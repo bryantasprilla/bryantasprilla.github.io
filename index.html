@@ -16,7 +16,8 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- Navigation -->
+
+    <!-- ===================== NAVBAR ===================== -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
             <a class="navbar-brand" href="#home">Bryant Asprilla</a>
@@ -25,27 +26,17 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#home">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#about">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#experience">Experience</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#skills">Skills</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contact">Contact</a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- ===================== HERO ===================== -->
     <section id="home" class="hero-section">
         <div class="container">
             <div class="row align-items-center min-vh-100">
@@ -75,139 +66,165 @@
         </div>
     </section>
 
-    <!-- About Section -->
+    <!-- ===================== ABOUT ===================== -->
     <section id="about" class="py-5 bg-light">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 mx-auto">
                     <h2 class="section-title text-center mb-5">About Me</h2>
                     <p class="lead text-center mb-4">
-                        I build products where the stakes are high and the details matter. My background spans regulated industries like healthcare,
-                         financial services, and global HR, where I’ve led teams turning complex systems into reliable, intuitive software, including
-                          bringing AI from early experiments into trusted, widely adopted products. I’m at my best where technology, strategy, and real-world impact meet.
+                        Senior Product Leader with 8+ years driving SaaS product strategy, execution, and innovation 
+                        in Governance, Risk, and Compliance (GRC) and other highly regulated industries.
                     </p>
                     <p class="text-muted">
-                        I’ve worked alongside teams and customers across North America,
-                        Europe, the Middle East, Africa, and Asia, and that global exposure has shaped
-                        how I think about problem-solving and design. Working across cultures and
-                        regulatory environments has pushed me to be more creative, adaptable, and
-                        thoughtful about how products actually fit into people’s lives.
-                        
-                        Earlier in my career, my time in the U.S. Army Reserves taught me resilience,
-                        discipline, and how to lead calmly under pressure. Those experiences continue
-                        to influence how I work today: grounded, collaborative, and focused on
-                        building products that hold up in the real world.
+                        I have a proven track record leading global cross-functional teams, building multi-year product roadmaps, 
+                        and delivering compliance-focused solutions for financial services, healthcare, and third-party risk management. 
+                        Currently based in Bulgaria, I've worked across diverse markets including the Middle East and the United States, 
+                        bringing a global perspective to product development. I'm adept at aligning technology with evolving regulatory 
+                        requirements, optimizing operational workflows, and achieving measurable business outcomes including ARR growth, 
+                        client retention, and market expansion.
                     </p>
                 </div>
             </div>
         </div>
     </section>
 
-  <!-- Journey Timeline Section -->
-<section id="experience" class="journey-timeline-section">
-    <!-- Progress Bar -->
-    <div class="progress-bar-container">
-        <div class="progress-bar" id="progressBar"></div>
-    </div>
+    <!-- ===================== EXPERIENCE TIMELINE ===================== -->
+    <!--
+        This is a fully self-contained module.
+        The sidebar and story panels all live inside the fixed-height
+        #experience box. The page itself does NOT scroll inside here —
+        only the inner .tl-scroll-pane scrolls (snap-scroll).
+    -->
+    <section id="experience">
 
-    <!-- Navigation Sidebar -->
-    <div class="journey-nav-sidebar">
-        <div class="nav-header">My Journey</div>
-        
-        <div class="nav-item active" data-index="0">
-            <div class="nav-item-title">Building Discipline</div>
-            <div class="nav-item-meta">
-                <span class="flag">🇺🇸</span>
-                <span>USA · 2013</span>
-            </div>
-        </div>
+        <div class="tl-module">
 
-        <!-- Add your other nav items here -->
-    </div>
+            <!-- LEFT: narrow nav sidebar -->
+            <nav class="tl-sidebar">
+                <div class="tl-sidebar-heading">My Journey</div>
 
-    <!-- Main Content -->
-    <div class="content-wrapper">
-        <div class="scroll-container" id="scrollContainer">
-            
-            <!-- Story 1 -->
-            <section class="story-section active" data-index="0">
-                <div class="story-background">
-                    <img src="images/journey/army.jpg" class="active" alt="Army">
+                <div class="tl-nav-item active" data-target="0">
+                    <div class="tl-nav-title">Building Discipline</div>
+                    <div class="tl-nav-meta"><span>🇺🇸</span> USA &middot; 2013</div>
                 </div>
-                <div class="story-content">
-                    <div class="story-location">
-                        <span class="flag">🇺🇸</span>
-                        <span>Edison, New Jersey</span>
+
+                <div class="tl-nav-item" data-target="1">
+                    <div class="tl-nav-title">Healthcare Tech</div>
+                    <div class="tl-nav-meta"><span>🇺🇸</span> USA &middot; 2017</div>
+                </div>
+
+                <div class="tl-nav-item" data-target="2">
+                    <div class="tl-nav-title">The Dubai Leap</div>
+                    <div class="tl-nav-meta"><span>🇦🇪</span> UAE &middot; 2019</div>
+                </div>
+
+                <div class="tl-nav-item" data-target="3">
+                    <div class="tl-nav-title">GRC Innovation</div>
+                    <div class="tl-nav-meta"><span>🇧🇬</span> Bulgaria &middot; 2022</div>
+                </div>
+            </nav>
+
+            <!-- RIGHT: snap-scroll story panels -->
+            <div class="tl-scroll-pane" id="tlScrollPane">
+
+                <!-- Story 1 -->
+                <div class="tl-panel" data-index="0">
+                    <div class="tl-bg">
+                        <img src="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=1920&q=80" alt="Army Reserves" class="tl-bg-img active">
+                        <div class="tl-overlay"></div>
                     </div>
-                    <h2 class="story-title">Building Discipline</h2>
-                    <div class="story-date">2013 - 2019</div>
-                    <p class="story-text">
-                        Your personal story here...
-                    </p>
-                </div>
-            </section>
-                        <!-- Story 2 -->
-            <section class="story-section active" data-index="0">
-                <div class="story-background">
-                    <img src="images/journey/army.jpg" class="active" alt="Army">
-                </div>
-                <div class="story-content">
-                    <div class="story-location">
-                        <span class="flag">🇺🇸</span>
-                        <span>New York, New York</span>
+                    <div class="tl-content">
+                        <div class="tl-location"><span>🇺🇸</span> Edison, New Jersey</div>
+                        <h2 class="tl-title">Building Discipline</h2>
+                        <div class="tl-date">2013 – 2019</div>
+                        <p class="tl-text">
+                            My time in the Army Reserves taught me more than just discipline — it showed me how to 
+                            lead under pressure, make decisions with incomplete information, and keep teams focused 
+                            when things get chaotic. Those lessons became the foundation of how I approach product 
+                            management today: stay calm, be decisive, and always put your team first.
+                        </p>
                     </div>
-                    <h2 class="story-title">Growing Up</h2>
-                    <div class="story-date">1995 - 2019</div>
-                    <p class="story-text">
-                        Testing again
-                    </p>
                 </div>
-            </section>
-                        <!-- Story 3 -->
-            <section class="story-section active" data-index="0">
-                <div class="story-background">
-                    <img src="images/journey/army.jpg" class="active" alt="Army">
-                </div>
-                <div class="story-content">
-                    <div class="story-location">
-                        <span class="flag">🇺🇸</span>
-                        <span>Dubai, United Arab Emirates</span>
+
+                <!-- Story 2 -->
+                <div class="tl-panel" data-index="1">
+                    <div class="tl-bg">
+                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&q=80" alt="Epic Systems">
+                        <div class="tl-overlay"></div>
                     </div>
-                    <h2 class="story-title">Moving Abroad</h2>
-                    <div class="story-date">2013 - 2019</div>
-                    <p class="story-text">
-                        Testing some morenofandsojfnasdogjnasdovnasodvnasdo
-                        osngodfngsodndjlfnsdlvkn
-                        sldknfsdovnsodvjnsdovlnosvnsdo
-                        sdvnksodvjnsovnsovnsoivnsdovdnsoivdnsoviN
-                        sdvnisovjdsnovisndovidsnovidsnvdosinvsoivndoisnvdi
-                        dnvsoinsdovinsvoisdnovsidnvosivnosidnvosinvs
-                        --End Test--
-                    </p>
+                    <div class="tl-content">
+                        <div class="tl-location"><span>🇺🇸</span> Verona, Wisconsin</div>
+                        <h2 class="tl-title">Healthcare Tech Immersion</h2>
+                        <div class="tl-date">2017 – 2019</div>
+                        <p class="tl-text">
+                            Epic threw me into the deep end of healthcare software. I learned that in regulated 
+                            industries "move fast and break things" doesn't work — you need to move thoughtfully 
+                            and build things right the first time. Managing Level 2 IT teams across hospitals 
+                            taught me that great product management is equal parts technical expertise and human empathy.
+                        </p>
+                    </div>
                 </div>
-            </section>
 
-            <!-- Add your other story sections here -->
+                <!-- Story 3 -->
+                <div class="tl-panel" data-index="2">
+                    <div class="tl-bg">
+                        <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1920&q=80" alt="Dubai">
+                        <div class="tl-overlay"></div>
+                    </div>
+                    <div class="tl-content">
+                        <div class="tl-location"><span>🇦🇪</span> Dubai, UAE</div>
+                        <h2 class="tl-title">The Dubai Leap</h2>
+                        <div class="tl-date">2019 – 2022</div>
+                        <p class="tl-text">
+                            Moving to Dubai at 25 was terrifying and exhilarating in equal measure. I learned to 
+                            navigate healthcare regulations across three countries, work with executive leadership 
+                            who thought differently about technology, and build products for cultures completely 
+                            different from my own. It's where I discovered that great product management is 
+                            50% empathy and 50% understanding context.
+                        </p>
+                    </div>
+                </div>
 
-        </div>
-    </div>
-</section>
+                <!-- Story 4 -->
+                <div class="tl-panel" data-index="3">
+                    <div class="tl-bg">
+                        <img src="https://images.unsplash.com/photo-1527004013197-933c4bb611b3?w=1920&q=80" alt="Bulgaria">
+                        <div class="tl-overlay"></div>
+                    </div>
+                    <div class="tl-content">
+                        <div class="tl-location"><span>🇧🇬</span> Varna, Bulgaria</div>
+                        <h2 class="tl-title">GRC Innovation</h2>
+                        <div class="tl-date">2022 – Present</div>
+                        <p class="tl-text">
+                            Bulgaria brought me into the world of compliance and risk — industries where mistakes 
+                            have real consequences. I championed our first LLM products when AI was still scary 
+                            to most institutions, led a team through our first strategic roadmap, and learned that 
+                            the best product innovation comes from deeply understanding operational pain. 
+                            Managing $6M in ARR taught me that revenue growth and customer success are inseparable.
+                        </p>
+                    </div>
+                </div>
 
-    <!-- Skills Section -->
+            </div><!-- end tl-scroll-pane -->
+
+        </div><!-- end tl-module -->
+
+    </section><!-- end #experience -->
+
+    <!-- ===================== SKILLS ===================== -->
     <section id="skills" class="py-5 bg-light">
         <div class="container">
             <h2 class="section-title text-center mb-5">Core Competencies</h2>
             <div class="row">
                 <div class="col-lg-10 mx-auto">
                     <div class="row g-4">
-                        
-                        <!-- Skill Category 1 -->
+
                         <div class="col-md-6">
                             <div class="card h-100">
                                 <div class="card-body">
                                     <h5 class="card-title mb-3">
-                                        <i class="bi bi-shield-check text-primary me-2"></i>
-                                        GRC & Compliance
+                                        <i class="bi bi-shield-check text-primary me-2"></i>GRC &amp; Compliance
                                     </h5>
                                     <div class="d-flex flex-wrap gap-2">
                                         <span class="badge bg-primary">KYC/CDD</span>
@@ -221,13 +238,11 @@
                             </div>
                         </div>
 
-                        <!-- Skill Category 2 -->
                         <div class="col-md-6">
                             <div class="card h-100">
                                 <div class="card-body">
                                     <h5 class="card-title mb-3">
-                                        <i class="bi bi-diagram-3 text-primary me-2"></i>
-                                        Product Management
+                                        <i class="bi bi-diagram-3 text-primary me-2"></i>Product Management
                                     </h5>
                                     <div class="d-flex flex-wrap gap-2">
                                         <span class="badge bg-primary">Product Strategy</span>
@@ -241,13 +256,11 @@
                             </div>
                         </div>
 
-                        <!-- Skill Category 3 -->
                         <div class="col-md-6">
                             <div class="card h-100">
                                 <div class="card-body">
                                     <h5 class="card-title mb-3">
-                                        <i class="bi bi-cpu text-primary me-2"></i>
-                                        Technology & AI
+                                        <i class="bi bi-cpu text-primary me-2"></i>Technology &amp; AI
                                     </h5>
                                     <div class="d-flex flex-wrap gap-2">
                                         <span class="badge bg-primary">AI/LLM Integration</span>
@@ -261,13 +274,11 @@
                             </div>
                         </div>
 
-                        <!-- Skill Category 4 -->
                         <div class="col-md-6">
                             <div class="card h-100">
                                 <div class="card-body">
                                     <h5 class="card-title mb-3">
-                                        <i class="bi bi-people text-primary me-2"></i>
-                                        Leadership & Business
+                                        <i class="bi bi-people text-primary me-2"></i>Leadership &amp; Business
                                     </h5>
                                     <div class="d-flex flex-wrap gap-2">
                                         <span class="badge bg-primary">Cross-functional Leadership</span>
@@ -281,18 +292,16 @@
                             </div>
                         </div>
 
-                        <!-- Education & Certifications -->
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
                                     <h5 class="card-title mb-3">
-                                        <i class="bi bi-mortarboard text-primary me-2"></i>
-                                        Education & Certifications
+                                        <i class="bi bi-mortarboard text-primary me-2"></i>Education &amp; Certifications
                                     </h5>
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
                                             <h6 class="mb-2">Education</h6>
-                                            <p class="mb-1"><strong>Adelphi University</strong> - Garden City, New York</p>
+                                            <p class="mb-1"><strong>Adelphi University</strong> – Garden City, New York</p>
                                             <p class="text-muted small mb-1">B.B.A. in Accounting, GPA 3.78</p>
                                             <p class="text-muted small">Honors College | Dean's List | Presidential Scholarship</p>
                                         </div>
@@ -302,16 +311,16 @@
                                                 <li>Product Roadmapping Micro-Certification (PRC)™</li>
                                                 <li>Product Analytics Micro-Certification (PAC)™</li>
                                                 <li>McKinsey Forward Program</li>
-                                                <li>Epic Certifications: Resolute Hospital Billing, Hospital Coding, Claims & Remittance</li>
+                                                <li>Epic Certifications: Resolute Hospital Billing, Hospital Coding, Claims &amp; Remittance</li>
                                             </ul>
                                         </div>
                                     </div>
                                     <div class="mt-3">
                                         <h6 class="mb-2">Languages</h6>
                                         <div class="d-flex flex-wrap gap-2">
-                                            <span class="badge bg-primary">English - Fluent</span>
-                                            <span class="badge bg-primary">Spanish - Fluent</span>
-                                            <span class="badge bg-primary">Bulgarian - B1</span>
+                                            <span class="badge bg-primary">English – Fluent</span>
+                                            <span class="badge bg-primary">Spanish – Fluent</span>
+                                            <span class="badge bg-primary">Bulgarian – B1</span>
                                         </div>
                                     </div>
                                 </div>
@@ -324,7 +333,7 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- ===================== CONTACT ===================== -->
     <section id="contact" class="py-5 bg-dark text-white">
         <div class="container">
             <div class="row">
@@ -334,7 +343,6 @@
                         Interested in discussing product strategy, GRC solutions, or collaboration opportunities? 
                         I'd love to hear from you.
                     </p>
-                    
                     <div class="row g-4 mb-4">
                         <div class="col-md-4">
                             <div class="contact-info">
@@ -367,7 +375,6 @@
                             </div>
                         </div>
                     </div>
-                    
                     <p class="text-muted small">
                         <i class="bi bi-geo-alt me-2"></i>Currently based in Bulgaria | Open to global opportunities
                     </p>
@@ -376,100 +383,90 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- ===================== FOOTER ===================== -->
     <footer class="py-4 bg-black text-white text-center">
         <div class="container">
             <p class="mb-0">&copy; 2025 Bryant Asprilla. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- Bootstrap JS Bundle -->
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <!-- Custom JS -->
+
+    <!-- Main JS -->
     <script src="js/script.js"></script>
+
+    <!-- Timeline JS (self-contained, runs only inside #experience) -->
     <script>
-    // Journey Timeline Script
-    const scrollContainer = document.getElementById('scrollContainer');
-    const sections = document.querySelectorAll('.story-section');
-    const navItems = document.querySelectorAll('.journey-nav-sidebar .nav-item');
-    const progressBar = document.getElementById('progressBar');
-    const backgroundImages = document.querySelectorAll('.story-background img');
+    (function () {
+        const pane      = document.getElementById('tlScrollPane');
+        const panels    = document.querySelectorAll('.tl-panel');
+        const navItems  = document.querySelectorAll('.tl-nav-item');
+        if (!pane) return;
 
-    let currentIndex = 0;
-    let isScrolling = false;
+        let current = 0;
 
-    // Navigation click handler
-    navItems.forEach((item, index) => {
-        item.addEventListener('click', () => {
-            sections[index].scrollIntoView({ behavior: 'smooth' });
+        /* ---- Activate a panel by index ---- */
+        function activate(index) {
+            if (index === current && panels[index].classList.contains('active')) return;
+            current = index;
+
+            panels.forEach((p, i) => {
+                p.classList.toggle('active', i === index);
+            });
+
+            navItems.forEach((n, i) => {
+                n.classList.toggle('active', i === index);
+            });
+        }
+
+        /* ---- Scroll to panel by index ---- */
+        function scrollTo(index) {
+            pane.scrollTo({ top: panels[index].offsetTop, behavior: 'smooth' });
+        }
+
+        /* ---- Nav click ---- */
+        navItems.forEach((item, i) => {
+            item.addEventListener('click', () => scrollTo(i));
         });
-    });
 
-    // Update active states based on scroll position
-    function updateActiveStates() {
-        const scrollPosition = scrollContainer.scrollTop;
-        const windowHeight = window.innerHeight;
-        
-        sections.forEach((section, index) => {
-            const sectionTop = section.offsetTop;
-            
-            if (scrollPosition >= sectionTop - (windowHeight / 3) && 
-                scrollPosition < sectionTop + (windowHeight * 2/3)) {
-                
-                if (currentIndex !== index) {
-                    currentIndex = index;
-                    
-                    sections.forEach(s => s.classList.remove('active'));
-                    section.classList.add('active');
-                    
-                    navItems.forEach(n => n.classList.remove('active'));
-                    navItems[index].classList.add('active');
-                    
-                    backgroundImages.forEach((img, imgIndex) => {
-                        img.classList.remove('active');
-                        if (imgIndex === index) {
-                            img.classList.add('active');
-                            img.style.transform = 'scale(1.05)';
-                            setTimeout(() => {
-                                img.style.transform = 'scale(1)';
-                            }, 1000);
+        /* ---- Scroll listener — detect which panel is most visible ---- */
+        let ticking = false;
+        pane.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    const center = pane.scrollTop + pane.clientHeight / 2;
+                    panels.forEach((panel, i) => {
+                        if (
+                            panel.offsetTop <= center &&
+                            panel.offsetTop + panel.offsetHeight > center
+                        ) {
+                            activate(i);
                         }
                     });
-                }
+                    ticking = false;
+                });
+                ticking = true;
             }
         });
 
-        const totalScroll = scrollContainer.scrollHeight - scrollContainer.clientHeight;
-        const scrollPercentage = (scrollPosition / totalScroll) * 100;
-        progressBar.style.width = scrollPercentage + '%';
-    }
+        /* ---- Keyboard: only intercept arrows when pane is focused ---- */
+        pane.setAttribute('tabindex', '0');
+        pane.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowDown' && current < panels.length - 1) {
+                e.preventDefault();
+                scrollTo(current + 1);
+            }
+            if (e.key === 'ArrowUp' && current > 0) {
+                e.preventDefault();
+                scrollTo(current - 1);
+            }
+        });
 
-    let scrollTimeout;
-    scrollContainer.addEventListener('scroll', () => {
-        if (!isScrolling) {
-            isScrolling = true;
-        }
-        
-        clearTimeout(scrollTimeout);
-        scrollTimeout = setTimeout(() => {
-            isScrolling = false;
-        }, 150);
-        
-        updateActiveStates();
-    });
+        /* ---- Init ---- */
+        activate(0);
+    })();
+    </script>
 
-    updateActiveStates();
-
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowDown' && currentIndex < sections.length - 1) {
-            e.preventDefault();
-            sections[currentIndex + 1].scrollIntoView({ behavior: 'smooth' });
-        } else if (e.key === 'ArrowUp' && currentIndex > 0) {
-            e.preventDefault();
-            sections[currentIndex - 1].scrollIntoView({ behavior: 'smooth' });
-        }
-    });
-</script>
 </body>
 </html>
