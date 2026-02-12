@@ -264,3 +264,20 @@ section {
 ::-webkit-scrollbar-thumb:hover {
     background: #0b5ed7;
 }
+/* ========================================
+   JOURNEY TIMELINE SECTION
+   ======================================== */
+
+/* Navigation Sidebar */
+.journey-nav-sidebar {
+    position: fixed;
+    left: 0;
+    top: 56px; /* Below your main navbar */
+    width: 18%;
+    height: calc(100vh - 56px);
+    background: rgba(0, 0, 0, 0.95);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 40px 20px;
+    z-index: 100;
+    overflow-y: auto;
+}
