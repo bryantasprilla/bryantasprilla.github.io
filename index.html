@@ -388,5 +388,88 @@
     
     <!-- Custom JS -->
     <script src="js/script.js"></script>
+    <script>
+    // Journey Timeline Script
+    const scrollContainer = document.getElementById('scrollContainer');
+    const sections = document.querySelectorAll('.story-section');
+    const navItems = document.querySelectorAll('.journey-nav-sidebar .nav-item');
+    const progressBar = document.getElementById('progressBar');
+    const backgroundImages = document.querySelectorAll('.story-background img');
+
+    let currentIndex = 0;
+    let isScrolling = false;
+
+    // Navigation click handler
+    navItems.forEach((item, index) => {
+        item.addEventListener('click', () => {
+            sections[index].scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+
+    // Update active states based on scroll position
+    function updateActiveStates() {
+        const scrollPosition = scrollContainer.scrollTop;
+        const windowHeight = window.innerHeight;
+        
+        sections.forEach((section, index) => {
+            const sectionTop = section.offsetTop;
+            
+            if (scrollPosition >= sectionTop - (windowHeight / 3) && 
+                scrollPosition < sectionTop + (windowHeight * 2/3)) {
+                
+                if (currentIndex !== index) {
+                    currentIndex = index;
+                    
+                    sections.forEach(s => s.classList.remove('active'));
+                    section.classList.add('active');
+                    
+                    navItems.forEach(n => n.classList.remove('active'));
+                    navItems[index].classList.add('active');
+                    
+                    backgroundImages.forEach((img, imgIndex) => {
+                        img.classList.remove('active');
+                        if (imgIndex === index) {
+                            img.classList.add('active');
+                            img.style.transform = 'scale(1.05)';
+                            setTimeout(() => {
+                                img.style.transform = 'scale(1)';
+                            }, 1000);
+                        }
+                    });
+                }
+            }
+        });
+
+        const totalScroll = scrollContainer.scrollHeight - scrollContainer.clientHeight;
+        const scrollPercentage = (scrollPosition / totalScroll) * 100;
+        progressBar.style.width = scrollPercentage + '%';
+    }
+
+    let scrollTimeout;
+    scrollContainer.addEventListener('scroll', () => {
+        if (!isScrolling) {
+            isScrolling = true;
+        }
+        
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+            isScrolling = false;
+        }, 150);
+        
+        updateActiveStates();
+    });
+
+    updateActiveStates();
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowDown' && currentIndex < sections.length - 1) {
+            e.preventDefault();
+            sections[currentIndex + 1].scrollIntoView({ behavior: 'smooth' });
+        } else if (e.key === 'ArrowUp' && currentIndex > 0) {
+            e.preventDefault();
+            sections[currentIndex - 1].scrollIntoView({ behavior: 'smooth' });
+        }
+    });
+</script>
 </body>
 </html>
