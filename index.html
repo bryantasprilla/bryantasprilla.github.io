@@ -51,7 +51,7 @@
                         <a href="https://github.com/bryantasprilla" target="_blank" class="btn btn-outline-dark btn-sm">
                             <i class="bi bi-github"></i>
                         </a>
-                        <a href="mailto:bryantasprilla@yahoo.com" class="btn btn-outline-dark btn-sm">
+                        <a href="/cdn-cgi/l/email-protection#4426363d252a30253734362d282825043d252c2b2b6a272b29" class="btn btn-outline-dark btn-sm">
                             <i class="bi bi-envelope"></i>
                         </a>
                     </div>
@@ -298,7 +298,7 @@
                         <div class="col-md-4">
                             <div class="contact-info">
                                 <i class="bi bi-envelope fs-3 mb-2"></i>
-                                <p class="mb-0"><a href="mailto:bryantasprilla@yahoo.com" class="text-white text-decoration-none">bryantasprilla@yahoo.com</a></p>
+                                <p class="mb-0"><a href="/cdn-cgi/l/email-protection#b8dacac1d9d6ccd9cbc8cad1d4d4d9f8c1d9d0d7d796dbd7d5" class="text-white text-decoration-none"><span class="__cf_email__" data-cfemail="c3a1b1baa2adb7a2b0b3b1aaafafa283baa2abacaceda0acae">[email&#160;protected]</span></a></p>
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -329,7 +329,438 @@
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+    (function () {
+        var pane     = document.getElementById('tlScrollPane');
+        var panels   = document.querySelectorAll('#experience .tl-panel');
+        var navItems = document.querySelectorAll('#tlSidebar .tl-nav-item');
+        if (!pane || !panels.length || !navItems.length) return;
+
+        var current   = 0;
+        var snapping  = false;
+        var snapTimer = null;
+
+        /* 20% into a panel triggers a snap to it */
+        var THRESHOLD = 0.20;
+
+        function isMobile() { return window.innerWidth <= 768; }
+
+        /* ---- Update nav + panel active states ---- */
+        function activate(i) {
+            current = i;
+            panels.forEach(function(p, idx)   { p.classList.toggle('active', idx === i); });
+            navItems.forEach(function(n, idx) { n.classList.toggle('active', idx === i); });
+            if (isMobile()) {
+                var sidebar = document.getElementById('tlSidebar');
+                var tab     = navItems[i];
+                if (sidebar && tab) {
+                    sidebar.scrollTo({ left: tab.offsetLeft - 12, behavior: 'smooth' });
+                }
+            }
+        }
+
+        /* ---- Scroll to panel[i] ---- */
+        function goTo(i) {
+            snapping = true;
+            activate(i);
+            if (isMobile()) {
+                var sidebar  = document.getElementById('tlSidebar');
+                var sidebarH = sidebar ? sidebar.offsetHeight : 0;
+                var offset   = panels[i].getBoundingClientRect().top + window.scrollY - 56 - sidebarH;
+                window.scrollTo({ top: offset, behavior: 'smooth' });
+            } else {
+                pane.scrollTo({ top: panels[i].offsetTop, behavior: 'smooth' });
+            }
+            clearTimeout(snapTimer);
+            snapTimer = setTimeout(function() { snapping = false; }, 650);
+        }
+
+        /* ---- Decide snap target from current scroll position ---- */
+        function snap(scrollPos, viewSize) {
+            if (snapping) return;
+            clearTimeout(snapTimer);
+            snapTimer = setTimeout(function() {
+                if (snapping) return;
+
+                var panelTop = isMobile()
+                    ? panels[current].getBoundingClientRect().top + window.scrollY
+                    : panels[current].offsetTop;
+                var panelH   = panels[current].offsetHeight;
+                var progress = (scrollPos - panelTop) / panelH;
+
+                var target;
+                if (progress > THRESHOLD && current < panels.length - 1) {
+                    target = current + 1;
+                } else if (progress < -THRESHOLD && current > 0) {
+                    target = current - 1;
+                } else {
+                    target = current;
+                }
+                goTo(target);
+            }, 80);
+        }
+
+        /* ---- Desktop: inner pane scroll ---- */
+        pane.style.scrollSnapType = 'none';
+        pane.addEventListener('scroll', function() {
+            if (isMobile()) return;
+            snap(pane.scrollTop, pane.clientHeight);
+        });
+
+        /* ---- Mobile: window scroll ---- */
+        window.addEventListener('scroll', function() {
+            if (!isMobile()) return;
+            snap(window.scrollY, window.innerHeight);
+        });
+
+        /* ---- Nav clicks ---- */
+        navItems.forEach(function(item, i) {
+            item.addEventListener('click', function() { goTo(i); });
+        });
+
+        /* ---- Arrow keys (desktop) ---- */
+        pane.setAttribute('tabindex', '0');
+        pane.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowDown' && current < panels.length - 1) { e.preventDefault(); goTo(current + 1); }
+            if (e.key === 'ArrowUp'   && current > 0)                 { e.preventDefault(); goTo(current - 1); }
+        });
+
+        activate(0);
+    })();
+    </script>ml>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Bryant Asprilla - Senior Product Leader specializing in GRC SaaS, KYC/CDD, and compliance-focused solutions">
+    <title>Bryant Asprilla | Product Leader</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#home">Bryant Asprilla</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section id="home" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center min-vh-100">
+                <div class="col-lg-8 mx-auto text-center">
+                    <img src="images/profile.jpg" alt="Bryant Asprilla" class="profile-img mb-4">
+                    <h1 class="display-3 fw-bold mb-3">Bryant Asprilla</h1>
+                    <p class="lead mb-4">Senior Product Leader | GRC SaaS &amp; Compliance Solutions</p>
+                    <div class="d-flex justify-content-center gap-3 mb-4">
+                        <a href="#contact" class="btn btn-primary btn-lg">Get In Touch</a>
+                        <a href="files/resume.pdf" class="btn btn-outline-secondary btn-lg" download>
+                            <i class="bi bi-download me-2"></i>Download Resume
+                        </a>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/bryantasprilla" target="_blank" class="btn btn-outline-dark btn-sm">
+                            <i class="bi bi-linkedin"></i>
+                        </a>
+                        <a href="https://github.com/bryantasprilla" target="_blank" class="btn btn-outline-dark btn-sm">
+                            <i class="bi bi-github"></i>
+                        </a>
+                        <a href="/cdn-cgi/l/email-protection#4426363d252a30253734362d282825043d252c2b2b6a272b29" class="btn btn-outline-dark btn-sm">
+                            <i class="bi bi-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <h2 class="section-title text-center mb-5">About Me</h2>
+                    <p class="lead text-center mb-4">
+                        Senior Product Leader with 8+ years driving SaaS product strategy, execution, and innovation
+                        in Governance, Risk, and Compliance (GRC) and other highly regulated industries.
+                    </p>
+                    <p class="text-muted">
+                        I have a proven track record leading global cross-functional teams, building multi-year product
+                        roadmaps, and delivering compliance-focused solutions for financial services, healthcare, and
+                        third-party risk management. Currently based in Bulgaria, I've worked across diverse markets
+                        including the Middle East and the United States, bringing a global perspective to product
+                        development. I'm adept at aligning technology with evolving regulatory requirements,
+                        optimizing operational workflows, and achieving measurable business outcomes including
+                        ARR growth, client retention, and market expansion.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE TIMELINE -->
+    <section id="experience">
+
+        <!-- LEFT (desktop) / TOP (mobile): tab nav -->
+        <nav class="tl-sidebar" id="tlSidebar">
+            <div class="tl-sidebar-heading">My Journey</div>
+            <div class="tl-nav-item active" data-target="0">
+                <div class="tl-nav-title">Building Discipline</div>
+                <div class="tl-nav-meta">&#127482;&#127480; USA &middot; 2013</div>
+            </div>
+            <div class="tl-nav-item" data-target="1">
+                <div class="tl-nav-title">Healthcare Tech</div>
+                <div class="tl-nav-meta">&#127482;&#127480; USA &middot; 2017</div>
+            </div>
+            <div class="tl-nav-item" data-target="2">
+                <div class="tl-nav-title">The Dubai Leap</div>
+                <div class="tl-nav-meta">&#127462;&#127466; UAE &middot; 2019</div>
+            </div>
+            <div class="tl-nav-item" data-target="3">
+                <div class="tl-nav-title">GRC Innovation</div>
+                <div class="tl-nav-meta">&#127463;&#127468; Bulgaria &middot; 2022</div>
+            </div>
+        </nav>
+
+        <!-- RIGHT (desktop) / BELOW (mobile): story panels -->
+        <div class="tl-scroll-pane" id="tlScrollPane">
+
+            <div class="tl-panel active" data-index="0">
+                <div class="tl-bg">
+                    <img src="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=1920&q=80" alt="Army Reserves">
+                    <div class="tl-overlay"></div>
+                </div>
+                <div class="tl-content">
+                    <div class="tl-location"><span>&#127482;&#127480;</span> Edison, New Jersey</div>
+                    <h2 class="tl-title">Building Discipline</h2>
+                    <div class="tl-date">2013 &ndash; 2019</div>
+                    <p class="tl-text">
+                        My time in the Army Reserves taught me more than just discipline &mdash; it showed me how to
+                        lead under pressure, make decisions with incomplete information, and keep teams focused
+                        when things get chaotic. Those lessons became the foundation of how I approach product
+                        management today: stay calm, be decisive, and always put your team first.
+                    </p>
+                </div>
+            </div>
+
+            <div class="tl-panel" data-index="1">
+                <div class="tl-bg">
+                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&q=80" alt="Epic Systems">
+                    <div class="tl-overlay"></div>
+                </div>
+                <div class="tl-content">
+                    <div class="tl-location"><span>&#127482;&#127480;</span> Verona, Wisconsin</div>
+                    <h2 class="tl-title">Healthcare Tech Immersion</h2>
+                    <div class="tl-date">2017 &ndash; 2019</div>
+                    <p class="tl-text">
+                        Epic threw me into the deep end of healthcare software. I learned that in regulated
+                        industries &ldquo;move fast and break things&rdquo; doesn&rsquo;t work &mdash; you need to move thoughtfully
+                        and build things right the first time. Managing Level 2 IT teams across hospitals
+                        taught me that great product management is equal parts technical expertise and human empathy.
+                    </p>
+                </div>
+            </div>
+
+            <div class="tl-panel" data-index="2">
+                <div class="tl-bg">
+                    <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1920&q=80" alt="Dubai">
+                    <div class="tl-overlay"></div>
+                </div>
+                <div class="tl-content">
+                    <div class="tl-location"><span>&#127462;&#127466;</span> Dubai, UAE</div>
+                    <h2 class="tl-title">The Dubai Leap</h2>
+                    <div class="tl-date">2019 &ndash; 2022</div>
+                    <p class="tl-text">
+                        Moving to Dubai at 25 was terrifying and exhilarating in equal measure. I learned to
+                        navigate healthcare regulations across three countries, work with executive leadership
+                        who thought differently about technology, and build products for cultures completely
+                        different from my own. It&rsquo;s where I discovered that great product management is
+                        50% empathy and 50% understanding context.
+                    </p>
+                </div>
+            </div>
+
+            <div class="tl-panel" data-index="3">
+                <div class="tl-bg">
+                    <img src="https://images.unsplash.com/photo-1527004013197-933c4bb611b3?w=1920&q=80" alt="Bulgaria">
+                    <div class="tl-overlay"></div>
+                </div>
+                <div class="tl-content">
+                    <div class="tl-location"><span>&#127463;&#127468;</span> Varna, Bulgaria</div>
+                    <h2 class="tl-title">GRC Innovation</h2>
+                    <div class="tl-date">2022 &ndash; Present</div>
+                    <p class="tl-text">
+                        Bulgaria brought me into the world of compliance and risk &mdash; industries where mistakes
+                        have real consequences. I championed our first LLM products when AI was still scary
+                        to most institutions, led a team through our first strategic roadmap, and learned that
+                        the best product innovation comes from deeply understanding operational pain.
+                        Managing $6M in ARR taught me that revenue growth and customer success are inseparable.
+                    </p>
+                </div>
+            </div>
+
+        </div><!-- end tl-scroll-pane -->
+
+    </section><!-- end #experience -->
+
+    <!-- SKILLS -->
+    <section id="skills" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title text-center mb-5">Core Competencies</h2>
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="card h-100"><div class="card-body">
+                                <h5 class="card-title mb-3"><i class="bi bi-shield-check text-primary me-2"></i>GRC &amp; Compliance</h5>
+                                <div class="d-flex flex-wrap gap-2">
+                                    <span class="badge bg-primary">KYC/CDD</span>
+                                    <span class="badge bg-primary">AML</span>
+                                    <span class="badge bg-primary">Sanctions Screening</span>
+                                    <span class="badge bg-primary">Regulatory Compliance</span>
+                                    <span class="badge bg-primary">Third-Party Risk</span>
+                                    <span class="badge bg-primary">Audit Management</span>
+                                </div>
+                            </div></div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100"><div class="card-body">
+                                <h5 class="card-title mb-3"><i class="bi bi-diagram-3 text-primary me-2"></i>Product Management</h5>
+                                <div class="d-flex flex-wrap gap-2">
+                                    <span class="badge bg-primary">Product Strategy</span>
+                                    <span class="badge bg-primary">Roadmap Development</span>
+                                    <span class="badge bg-primary">Go-to-Market</span>
+                                    <span class="badge bg-primary">Agile/Scrum</span>
+                                    <span class="badge bg-primary">KPI Tracking</span>
+                                    <span class="badge bg-primary">RFP Management</span>
+                                </div>
+                            </div></div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100"><div class="card-body">
+                                <h5 class="card-title mb-3"><i class="bi bi-cpu text-primary me-2"></i>Technology &amp; AI</h5>
+                                <div class="d-flex flex-wrap gap-2">
+                                    <span class="badge bg-primary">AI/LLM Integration</span>
+                                    <span class="badge bg-primary">NLP</span>
+                                    <span class="badge bg-primary">Amazon Redshift</span>
+                                    <span class="badge bg-primary">SaaS Platforms</span>
+                                    <span class="badge bg-primary">BI Reporting</span>
+                                    <span class="badge bg-primary">Case Management</span>
+                                </div>
+                            </div></div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100"><div class="card-body">
+                                <h5 class="card-title mb-3"><i class="bi bi-people text-primary me-2"></i>Leadership &amp; Business</h5>
+                                <div class="d-flex flex-wrap gap-2">
+                                    <span class="badge bg-primary">Cross-functional Leadership</span>
+                                    <span class="badge bg-primary">Vendor Management</span>
+                                    <span class="badge bg-primary">Contract Negotiation</span>
+                                    <span class="badge bg-primary">Stakeholder Alignment</span>
+                                    <span class="badge bg-primary">Revenue Growth</span>
+                                    <span class="badge bg-primary">Client Retention</span>
+                                </div>
+                            </div></div>
+                        </div>
+                        <div class="col-12">
+                            <div class="card"><div class="card-body">
+                                <h5 class="card-title mb-3"><i class="bi bi-mortarboard text-primary me-2"></i>Education &amp; Certifications</h5>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <h6 class="mb-2">Education</h6>
+                                        <p class="mb-1"><strong>Adelphi University</strong> &ndash; Garden City, New York</p>
+                                        <p class="text-muted small mb-1">B.B.A. in Accounting, GPA 3.78</p>
+                                        <p class="text-muted small">Honors College | Dean&rsquo;s List | Presidential Scholarship</p>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <h6 class="mb-2">Certifications</h6>
+                                        <ul class="small mb-0">
+                                            <li>Product Roadmapping Micro-Certification (PRC)&trade;</li>
+                                            <li>Product Analytics Micro-Certification (PAC)&trade;</li>
+                                            <li>McKinsey Forward Program</li>
+                                            <li>Epic Certifications: Resolute Hospital Billing, Hospital Coding, Claims &amp; Remittance</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="mt-3">
+                                    <h6 class="mb-2">Languages</h6>
+                                    <div class="d-flex flex-wrap gap-2">
+                                        <span class="badge bg-primary">English &ndash; Fluent</span>
+                                        <span class="badge bg-primary">Spanish &ndash; Fluent</span>
+                                        <span class="badge bg-primary">Bulgarian &ndash; B1</span>
+                                    </div>
+                                </div>
+                            </div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="py-5 bg-dark text-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h2 class="section-title mb-4">Get In Touch</h2>
+                    <p class="lead mb-4">
+                        Interested in discussing product strategy, GRC solutions, or collaboration opportunities?
+                        I&rsquo;d love to hear from you.
+                    </p>
+                    <div class="row g-4 mb-4">
+                        <div class="col-md-4">
+                            <div class="contact-info">
+                                <i class="bi bi-envelope fs-3 mb-2"></i>
+                                <p class="mb-0"><a href="/cdn-cgi/l/email-protection#b8dacac1d9d6ccd9cbc8cad1d4d4d9f8c1d9d0d7d796dbd7d5" class="text-white text-decoration-none"><span class="__cf_email__" data-cfemail="c3a1b1baa2adb7a2b0b3b1aaafafa283baa2abacaceda0acae">[email&#160;protected]</span></a></p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="contact-info">
+                                <i class="bi bi-linkedin fs-3 mb-2"></i>
+                                <p class="mb-0"><a href="https://www.linkedin.com/in/bryantasprilla" target="_blank" class="text-white text-decoration-none">LinkedIn Profile</a></p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="contact-info">
+                                <i class="bi bi-telephone fs-3 mb-2"></i>
+                                <p class="mb-0"><a href="tel:+19176014462" class="text-white text-decoration-none">+1 (917) 601-4462</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-muted small">
+                        <i class="bi bi-geo-alt me-2"></i>Currently based in Bulgaria | Open to global opportunities
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-4 bg-black text-white text-center">
+        <div class="container">
+            <p class="mb-0">&copy; 2025 Bryant Asprilla. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
     (function () {
@@ -405,13 +836,3 @@
         /* Arrow keys (desktop) */
         pane.setAttribute('tabindex', '0');
         pane.addEventListener('keydown', function(e) {
-            if (e.key === 'ArrowDown' && current < panels.length - 1) { e.preventDefault(); goTo(current + 1); }
-            if (e.key === 'ArrowUp'   && current > 0)                 { e.preventDefault(); goTo(current - 1); }
-        });
-
-        activate(0);
-    })();
-    </script>
-
-</body>
-</html>
