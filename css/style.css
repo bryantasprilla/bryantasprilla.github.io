@@ -189,8 +189,10 @@ section { scroll-margin-top: 56px; }
     object-position: 65% center;
     opacity: 0;
     transform: scale(1.04);
-    transition: opacity .9s ease, transform 1.8s ease;
+    /* Base transition — JS overrides these inline during blend */
+    transition: opacity 0.35s ease, transform 1.8s ease;
 }
+/* .active sets the initial visible state; JS blend() takes over after first load */
 .tl-panel.active .tl-bg img { opacity: 1; transform: scale(1); }
 
 .tl-overlay {
@@ -217,7 +219,8 @@ section { scroll-margin-top: 56px; }
     color: white;
     opacity: 0;
     transform: translateY(20px);
-    transition: opacity .7s ease .1s, transform .7s ease .1s;
+    /* JS blend() drives these after first panel; keep for initial load */
+    transition: opacity 0.35s ease 0.1s, transform 0.35s ease 0.1s;
 }
 .tl-panel.active .tl-content { opacity: 1; transform: translateY(0); }
 
