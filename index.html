@@ -342,16 +342,53 @@
         var snapping  = false;
         var snapTimer = null;
 
-        /* 20% into a panel triggers a snap to it */
-        var THRESHOLD = 0.20;
+        /* Snap after scrolling 15% into the next/prev panel */
+        var THRESHOLD = 0.15;
 
         function isMobile() { return window.innerWidth <= 768; }
 
+        /* ---- Crossfade blend between outgoing and incoming panel ---- */
+        function blendTo(fromIdx, toIdx) {
+            if (fromIdx === toIdx) return;
+            var fromImg = panels[fromIdx].querySelector('.tl-bg img');
+            var toImg   = panels[toIdx].querySelector('.tl-bg img');
+            var toContent = panels[toIdx].querySelector('.tl-content');
+
+            /* Snap the incoming image to full opacity instantly via a
+               temporary clone sitting on top, then fade it in */
+            if (fromImg && toImg) {
+                /* Fade out the outgoing image slightly */
+                fromImg.style.transition = 'opacity 0.3s ease';
+                fromImg.style.opacity = '0';
+
+                /* Incoming image fades in fast */
+                toImg.style.transition = 'opacity 0.35s ease, transform 1.8s ease';
+                toImg.style.opacity = '1';
+                toImg.style.transform = 'scale(1)';
+            }
+
+            /* Slide in the text content */
+            if (toContent) {
+                toContent.style.transition = 'none';
+                toContent.style.opacity    = '0';
+                toContent.style.transform  = 'translateY(16px)';
+                requestAnimationFrame(function() {
+                    requestAnimationFrame(function() {
+                        toContent.style.transition = 'opacity 0.35s ease 0.1s, transform 0.35s ease 0.1s';
+                        toContent.style.opacity    = '1';
+                        toContent.style.transform  = 'translateY(0)';
+                    });
+                });
+            }
+        }
+
         /* ---- Update nav + panel active states ---- */
         function activate(i) {
-            current = i;
+            var prev = current;
+            current  = i;
             panels.forEach(function(p, idx)   { p.classList.toggle('active', idx === i); });
             navItems.forEach(function(n, idx) { n.classList.toggle('active', idx === i); });
+            if (prev !== i) blendTo(prev, i);
             if (isMobile()) {
                 var sidebar = document.getElementById('tlSidebar');
                 var tab     = navItems[i];
@@ -363,6 +400,7 @@
 
         /* ---- Scroll to panel[i] ---- */
         function goTo(i) {
+            if (i === current && !snapping) return;
             snapping = true;
             activate(i);
             if (isMobile()) {
@@ -374,11 +412,11 @@
                 pane.scrollTo({ top: panels[i].offsetTop, behavior: 'smooth' });
             }
             clearTimeout(snapTimer);
-            snapTimer = setTimeout(function() { snapping = false; }, 650);
+            snapTimer = setTimeout(function() { snapping = false; }, 400);
         }
 
-        /* ---- Decide snap target from current scroll position ---- */
-        function snap(scrollPos, viewSize) {
+        /* ---- Decide snap target ---- */
+        function snap(scrollPos) {
             if (snapping) return;
             clearTimeout(snapTimer);
             snapTimer = setTimeout(function() {
@@ -399,20 +437,20 @@
                     target = current;
                 }
                 goTo(target);
-            }, 80);
+            }, 40);   /* 40ms debounce — near-instant after scroll stops */
         }
 
         /* ---- Desktop: inner pane scroll ---- */
         pane.style.scrollSnapType = 'none';
         pane.addEventListener('scroll', function() {
             if (isMobile()) return;
-            snap(pane.scrollTop, pane.clientHeight);
+            snap(pane.scrollTop);
         });
 
         /* ---- Mobile: window scroll ---- */
         window.addEventListener('scroll', function() {
             if (!isMobile()) return;
-            snap(window.scrollY, window.innerHeight);
+            snap(window.scrollY);
         });
 
         /* ---- Nav clicks ---- */
