@@ -332,91 +332,102 @@
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
+    /* Fix 3: force page to top on every load/refresh */
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    window.scrollTo(0, 0);
+
     (function () {
         var pane     = document.getElementById('tlScrollPane');
         var panels   = document.querySelectorAll('#experience .tl-panel');
         var navItems = document.querySelectorAll('#tlSidebar .tl-nav-item');
         if (!pane || !panels.length || !navItems.length) return;
 
-        var current   = 0;
-        var snapping  = false;
+        var current  = 0;
+        var snapping = false;
         var snapTimer = null;
-
-        /* Snap after scrolling 15% into the next/prev panel */
-        var THRESHOLD = 0.15;
+        var THRESHOLD = 0.15;   /* 15% past edge triggers snap */
 
         function isMobile() { return window.innerWidth <= 768; }
 
-        /* ---- Crossfade blend between outgoing and incoming panel ---- */
-        function blendTo(fromIdx, toIdx) {
-            if (fromIdx === toIdx) return;
-            var fromImg = panels[fromIdx].querySelector('.tl-bg img');
-            var toImg   = panels[toIdx].querySelector('.tl-bg img');
-            var toContent = panels[toIdx].querySelector('.tl-content');
+        /* ---- Nav + panel active classes ---- */
+        function activate(i) {
+            current = i;
+            panels.forEach(function(p, idx)   { p.classList.toggle('active', idx === i); });
+            navItems.forEach(function(n, idx) { n.classList.toggle('active', idx === i); });
+            /* Auto-scroll tab bar on mobile */
+            if (isMobile()) {
+                var sidebar = document.getElementById('tlSidebar');
+                var tab = navItems[i];
+                if (sidebar && tab) sidebar.scrollTo({ left: tab.offsetLeft - 12, behavior: 'smooth' });
+            }
+        }
 
-            /* Snap the incoming image to full opacity instantly via a
-               temporary clone sitting on top, then fade it in */
-            if (fromImg && toImg) {
-                /* Fade out the outgoing image slightly */
-                fromImg.style.transition = 'opacity 0.3s ease';
-                fromImg.style.opacity = '0';
+        /* ---- Crossfade: only the images and text, no scroll animation delay ---- */
+        function blend(fromIdx, toIdx) {
+            var fromImg  = panels[fromIdx] && panels[fromIdx].querySelector('.tl-bg img');
+            var toImg    = panels[toIdx]   && panels[toIdx].querySelector('.tl-bg img');
+            var fromText = panels[fromIdx] && panels[fromIdx].querySelector('.tl-content');
+            var toText   = panels[toIdx]   && panels[toIdx].querySelector('.tl-content');
 
-                /* Incoming image fades in fast */
-                toImg.style.transition = 'opacity 0.35s ease, transform 1.8s ease';
-                toImg.style.opacity = '1';
-                toImg.style.transform = 'scale(1)';
+            /* Outgoing: fade image out */
+            if (fromImg) {
+                fromImg.style.transition = 'opacity 0.25s ease';
+                fromImg.style.opacity    = '0';
+            }
+            if (fromText) {
+                fromText.style.transition = 'opacity 0.2s ease';
+                fromText.style.opacity    = '0';
             }
 
-            /* Slide in the text content */
-            if (toContent) {
-                toContent.style.transition = 'none';
-                toContent.style.opacity    = '0';
-                toContent.style.transform  = 'translateY(16px)';
+            /* Incoming: fade image + text in */
+            if (toImg) {
+                toImg.style.transition = 'opacity 0.3s ease 0.05s, transform 1.8s ease';
+                toImg.style.opacity    = '1';
+                toImg.style.transform  = 'scale(1)';
+            }
+            if (toText) {
+                toText.style.transition = 'none';
+                toText.style.opacity    = '0';
+                toText.style.transform  = 'translateY(12px)';
                 requestAnimationFrame(function() {
                     requestAnimationFrame(function() {
-                        toContent.style.transition = 'opacity 0.35s ease 0.1s, transform 0.35s ease 0.1s';
-                        toContent.style.opacity    = '1';
-                        toContent.style.transform  = 'translateY(0)';
+                        toText.style.transition = 'opacity 0.3s ease 0.12s, transform 0.3s ease 0.12s';
+                        toText.style.opacity    = '1';
+                        toText.style.transform  = 'translateY(0)';
                     });
                 });
             }
         }
 
-        /* ---- Update nav + panel active states ---- */
-        function activate(i) {
-            var prev = current;
-            current  = i;
-            panels.forEach(function(p, idx)   { p.classList.toggle('active', idx === i); });
-            navItems.forEach(function(n, idx) { n.classList.toggle('active', idx === i); });
-            if (prev !== i) blendTo(prev, i);
-            if (isMobile()) {
-                var sidebar = document.getElementById('tlSidebar');
-                var tab     = navItems[i];
-                if (sidebar && tab) {
-                    sidebar.scrollTo({ left: tab.offsetLeft - 12, behavior: 'smooth' });
-                }
-            }
-        }
-
-        /* ---- Scroll to panel[i] ---- */
+        /* ---- Instant scroll (no smooth) + crossfade ---- */
         function goTo(i) {
-            if (i === current && !snapping) return;
+            if (i === current && !snapping) { snapping = false; return; }
+            var prev = current;
             snapping = true;
+
+            /* Update classes first */
             activate(i);
+
+            /* Scroll instantly — the crossfade IS the transition */
             if (isMobile()) {
                 var sidebar  = document.getElementById('tlSidebar');
                 var sidebarH = sidebar ? sidebar.offsetHeight : 0;
-                var offset   = panels[i].getBoundingClientRect().top + window.scrollY - 56 - sidebarH;
-                window.scrollTo({ top: offset, behavior: 'smooth' });
+                var top = panels[i].getBoundingClientRect().top + window.scrollY - 56 - sidebarH;
+                window.scrollTo(0, top);           /* instant, no smooth */
             } else {
-                pane.scrollTo({ top: panels[i].offsetTop, behavior: 'smooth' });
+                pane.scrollTop = panels[i].offsetTop;  /* instant, no smooth */
             }
+
+            /* Run the visual crossfade */
+            blend(prev, i);
+
+            /* Short lock just to prevent double-fires */
             clearTimeout(snapTimer);
-            snapTimer = setTimeout(function() { snapping = false; }, 400);
+            snapTimer = setTimeout(function() { snapping = false; }, 350);
         }
 
-        /* ---- Decide snap target ---- */
-        function snap(scrollPos) {
+        /* ---- Snap decision: fires 30ms after scroll stops ---- */
+        function onScroll(scrollPos) {
             if (snapping) return;
             clearTimeout(snapTimer);
             snapTimer = setTimeout(function() {
@@ -425,32 +436,25 @@
                 var panelTop = isMobile()
                     ? panels[current].getBoundingClientRect().top + window.scrollY
                     : panels[current].offsetTop;
-                var panelH   = panels[current].offsetHeight;
-                var progress = (scrollPos - panelTop) / panelH;
+                var progress = (scrollPos - panelTop) / panels[current].offsetHeight;
 
-                var target;
-                if (progress > THRESHOLD && current < panels.length - 1) {
-                    target = current + 1;
-                } else if (progress < -THRESHOLD && current > 0) {
-                    target = current - 1;
-                } else {
-                    target = current;
-                }
+                var target = current;
+                if      (progress >  THRESHOLD && current < panels.length - 1) target = current + 1;
+                else if (progress < -THRESHOLD && current > 0)                 target = current - 1;
+
                 goTo(target);
-            }, 40);   /* 40ms debounce — near-instant after scroll stops */
+            }, 30);
         }
 
-        /* ---- Desktop: inner pane scroll ---- */
-        pane.style.scrollSnapType = 'none';
+        /* ---- Scroll listeners ---- */
+        pane.style.scrollSnapType = 'none';   /* JS controls snap, not CSS */
+
         pane.addEventListener('scroll', function() {
-            if (isMobile()) return;
-            snap(pane.scrollTop);
+            if (!isMobile()) onScroll(pane.scrollTop);
         });
 
-        /* ---- Mobile: window scroll ---- */
         window.addEventListener('scroll', function() {
-            if (!isMobile()) return;
-            snap(window.scrollY);
+            if (isMobile()) onScroll(window.scrollY);
         });
 
         /* ---- Nav clicks ---- */
@@ -458,14 +462,21 @@
             item.addEventListener('click', function() { goTo(i); });
         });
 
-        /* ---- Arrow keys (desktop) ---- */
+        /* ---- Arrow keys ---- */
         pane.setAttribute('tabindex', '0');
         pane.addEventListener('keydown', function(e) {
             if (e.key === 'ArrowDown' && current < panels.length - 1) { e.preventDefault(); goTo(current + 1); }
             if (e.key === 'ArrowUp'   && current > 0)                 { e.preventDefault(); goTo(current - 1); }
         });
 
+        /* Fix 2: initialise cleanly — show first panel without calling blend() */
         activate(0);
+        /* Ensure first image is visible (in case inline styles were left from a prior session) */
+        var firstImg  = panels[0].querySelector('.tl-bg img');
+        var firstText = panels[0].querySelector('.tl-content');
+        if (firstImg)  { firstImg.style.opacity  = '1'; firstImg.style.transform  = 'scale(1)'; }
+        if (firstText) { firstText.style.opacity = '1'; firstText.style.transform = 'translateY(0)'; }
+
     })();
     </script>ml>
 <html lang="en">
