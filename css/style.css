@@ -187,12 +187,10 @@ section { scroll-margin-top: 56px; }
     width: 100%; height: 100%;
     object-fit: cover;
     object-position: 65% center;
-    opacity: 0;
-    transform: scale(1.04);
-    /* Base transition — JS overrides these inline during blend */
-    transition: opacity 0.35s ease, transform 1.8s ease;
+    opacity: 0;               /* JS sets to 1 on first panel init */
+    transform: scale(1.04);   /* JS sets to scale(1) on first panel init */
 }
-/* .active sets the initial visible state; JS blend() takes over after first load */
+/* Active state — JS also drives this inline, but keep as fallback */
 .tl-panel.active .tl-bg img { opacity: 1; transform: scale(1); }
 
 .tl-overlay {
@@ -217,10 +215,8 @@ section { scroll-margin-top: 56px; }
     width: min(500px, 58%);
     margin-left: 6%;
     color: white;
-    opacity: 0;
+    opacity: 0;              /* JS sets to 1 on first panel init */
     transform: translateY(20px);
-    /* JS blend() drives these after first panel; keep for initial load */
-    transition: opacity 0.35s ease 0.1s, transform 0.35s ease 0.1s;
 }
 .tl-panel.active .tl-content { opacity: 1; transform: translateY(0); }
 
