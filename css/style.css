@@ -6,13 +6,14 @@
     --primary: #0d6efd;
     --dark:    #212529;
     --light:   #f8f9fa;
+    --navbar-h: 56px;
 }
 
 /* ---- Base ---- */
 *, *::before, *::after { box-sizing: border-box; }
 html  { scroll-behavior: smooth; }
-body  { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; padding-top: 56px; }
-section { scroll-margin-top: 56px; }
+body  { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; padding-top: var(--navbar-h); }
+section { scroll-margin-top: var(--navbar-h); }
 
 /* ---- Section title ---- */
 .section-title { font-weight: 700; position: relative; display: inline-block; }
@@ -44,22 +45,16 @@ section { scroll-margin-top: 56px; }
 .hero-section::before { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,.3); z-index: 0; }
 .hero-section .container { position: relative; z-index: 1; }
 .profile-img { display: none; }
-
 .hero-section .btn               { padding: 12px 30px; font-weight: 600; border-radius: 50px; transition: all .3s; }
 .hero-section .btn-primary       { background: white; color: var(--primary); border: none; }
 .hero-section .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 16px rgba(0,0,0,.2); }
 .hero-section .btn-outline-secondary       { border-color: white; color: white; }
 .hero-section .btn-outline-secondary:hover { background: white; color: var(--dark); transform: translateY(-2px); }
-
-.social-links .btn {
-    width: 40px; height: 40px; border-radius: 50%; padding: 0;
-    display: inline-flex; align-items: center; justify-content: center;
-    margin: 0 5px; border-color: white; color: white; transition: all .3s;
-}
+.social-links .btn { width: 40px; height: 40px; border-radius: 50%; padding: 0; display: inline-flex; align-items: center; justify-content: center; margin: 0 5px; border-color: white; color: white; transition: all .3s; }
 .social-links .btn:hover { background: white; color: var(--dark); transform: translateY(-2px); }
 
 /* ---- Misc ---- */
-.badge        { font-weight: 500; padding: 8px 12px; }
+.badge          { font-weight: 500; padding: 8px 12px; }
 .contact-info i { color: var(--primary); }
 
 /* ---- Scrollbar ---- */
@@ -74,19 +69,23 @@ section { scroll-margin-top: 56px; }
 
 /* ============================================================
    EXPERIENCE TIMELINE
-   #experience is a flex-row container with fixed height.
-   .tl-sidebar  = left nav column.
-   .tl-scroll-pane = right area; panels stack absolutely inside it.
-   Arrows and counter float over the pane via absolute positioning.
+   Section is 80vh tall on desktop so adjacent sections peek.
+   Panels are absolutely stacked; only arrows + sidebar navigate.
+   No scroll events used anywhere in this section.
    ============================================================ */
 
 #experience {
     display: flex;
     flex-direction: row;
-    height: calc(100vh - 56px);   /* full viewport minus fixed navbar */
+    /* 80vh: sections above/below peek — never taller than viewport */
+    height: 80vh;
+    max-height: 700px;      /* cap on very tall screens */
     overflow: hidden;
     position: relative;
-    scroll-margin-top: 56px;
+    scroll-margin-top: var(--navbar-h);
+    /* Subtle top/bottom borders to frame the section */
+    border-top:    1px solid rgba(0,0,0,.08);
+    border-bottom: 1px solid rgba(0,0,0,.08);
 }
 
 /* ---- Sidebar ---- */
@@ -115,7 +114,6 @@ section { scroll-margin-top: 56px; }
     border-bottom: 1px solid rgba(255,255,255,.15);
     flex-shrink: 0;
 }
-
 .tl-nav-item {
     padding: 11px 10px;
     cursor: pointer;
@@ -127,134 +125,145 @@ section { scroll-margin-top: 56px; }
 }
 .tl-nav-item:hover  { opacity: 1; background: rgba(255,255,255,.06); border-left-color: rgba(255,255,255,.4); }
 .tl-nav-item.active { opacity: 1; background: rgba(255,255,255,.1);  border-left-color: #667eea; }
+.tl-nav-title { color: white; font-weight: 600; font-size: .82rem; margin-bottom: 4px; line-height: 1.3; white-space: normal; word-break: break-word; }
+.tl-nav-meta  { color: rgba(255,255,255,.5); font-size: .73rem; }
 
-.tl-nav-title {
-    color: white; font-weight: 600; font-size: .82rem;
-    margin-bottom: 4px; line-height: 1.3;
-    white-space: normal; word-break: break-word;
-}
-.tl-nav-meta { color: rgba(255,255,255,.5); font-size: .73rem; }
-
-/* ---- Story pane (right column) ---- */
+/* ---- Story pane ---- */
 .tl-scroll-pane {
     flex: 1;
     height: 100%;
-    overflow: hidden;   /* no free scroll — JS + arrows control navigation */
+    overflow: hidden;       /* completely locked — no scroll at all */
     position: relative;
+    /* Prevent any touch scroll bleeding in */
+    touch-action: none;
 }
 
-/* ---- Individual story panels (stacked absolutely) ---- */
+/* ---- Story panels (absolutely stacked, slide vertically) ---- */
 .tl-panel {
     position: absolute;
-    inset: 0;                /* fills the pane exactly */
+    inset: 0;
     display: flex;
     align-items: center;
     overflow: hidden;
-    background: #1a1a2e;     /* dark fallback while image loads */
-    /* Default: waiting below */
+    /* Unique gradient per panel used as background — no external images needed */
+    background: #1a1a2e;
     transform: translateY(100%);
     transition: transform 0.42s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.tl-panel.active { transform: translateY(0%);    }   /* visible */
-.tl-panel.above  { transform: translateY(-100%); }   /* scrolled past */
+.tl-panel.active { transform: translateY(0%);    }
+.tl-panel.above  { transform: translateY(-100%); }
 
-/* ---- Background image + gradient overlay ---- */
-.tl-bg { position: absolute; inset: 0; z-index: 0; }
+/* Per-panel background gradients */
+.tl-panel[data-index="0"] { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); }
+.tl-panel[data-index="1"] { background: linear-gradient(135deg, #0d1b2a 0%, #1b4332 50%, #2d6a4f 100%); }
+.tl-panel[data-index="2"] { background: linear-gradient(135deg, #1a0a2e 0%, #2d1b69 50%, #c77dff 100%); }
+.tl-panel[data-index="3"] { background: linear-gradient(135deg, #1a0a00 0%, #7c3f00 50%, #d4a017 100%); }
+
+/* ---- Background image (layered on top of gradient) ---- */
+.tl-bg {
+    position: absolute; inset: 0; z-index: 0;
+}
 .tl-bg img {
     width: 100%; height: 100%;
     object-fit: cover;
     object-position: 65% center;
+    /* If image fails to load, gradient background shows through */
+    opacity: 0.6;
 }
 .tl-overlay {
     position: absolute; inset: 0;
     background: linear-gradient(
         to right,
-        rgba(0,0,0,.93)  0%,
-        rgba(0,0,0,.82) 22%,
-        rgba(0,0,0,.55) 42%,
-        rgba(0,0,0,.25) 62%,
+        rgba(0,0,0,.92)  0%,
+        rgba(0,0,0,.80) 25%,
+        rgba(0,0,0,.50) 45%,
+        rgba(0,0,0,.20) 65%,
         rgba(0,0,0,.05) 80%,
         rgba(0,0,0,0)  100%
     );
 }
 
-/* ---- Story text content ---- */
+/* ---- Story text ---- */
 .tl-content {
     position: relative;
     z-index: 2;
-    width: min(500px, 58%);
+    width: min(480px, 55%);
     margin-left: 6%;
     color: white;
 }
-.tl-location {
-    display: flex; align-items: center; gap: 8px;
-    font-size: .9rem; color: rgba(255,255,255,.75);
-    margin-bottom: 8px;
-}
+.tl-location { display: flex; align-items: center; gap: 8px; font-size: .9rem; color: rgba(255,255,255,.75); margin-bottom: 8px; }
 .tl-location span { font-size: 1.3rem; }
-.tl-title  { font-size: clamp(1.7rem, 3vw, 2.6rem); font-weight: 700; line-height: 1.15; margin-bottom: 10px; }
-.tl-date   { font-size: .95rem; color: rgba(255,255,255,.6); font-weight: 500; margin-bottom: 20px; }
-.tl-text   { font-size: clamp(.9rem, 1.15vw, 1.05rem); line-height: 1.85; color: rgba(255,255,255,.9); text-shadow: 0 1px 3px rgba(0,0,0,.6); overflow-wrap: break-word; }
+.tl-title    { font-size: clamp(1.5rem, 2.5vw, 2.4rem); font-weight: 700; line-height: 1.15; margin-bottom: 10px; }
+.tl-date     { font-size: .9rem; color: rgba(255,255,255,.6); font-weight: 500; margin-bottom: 16px; }
+.tl-text     { font-size: clamp(.85rem, 1.1vw, 1rem); line-height: 1.8; color: rgba(255,255,255,.9); text-shadow: 0 1px 3px rgba(0,0,0,.6); overflow-wrap: break-word; }
 
 /* ---- Navigation arrows ---- */
 .tl-arrow {
     position: absolute;
-    /* Horizontally centred over the story pane (excluding sidebar) */
+    /* Centred over the story pane area only (right of sidebar) */
     left: calc(175px + (100% - 175px) / 2);
     transform: translateX(-50%);
     z-index: 30;
-    width: 52px; height: 52px;
+    width: 48px; height: 48px;
     border-radius: 50%;
-    border: 2px solid rgba(255,255,255,.45);
-    background: rgba(0,0,0,.3);
+    border: 2px solid rgba(255,255,255,.4);
+    background: rgba(0,0,0,.35);
     color: white;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: opacity .3s, background .2s, border-color .2s, transform .2s;
+    transition: opacity .25s, background .2s, border-color .2s, transform .2s;
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
 }
-.tl-arrow svg { width: 22px; height: 22px; display: block; }
-.tl-arrow:hover  { background: rgba(255,255,255,.2); border-color: rgba(255,255,255,.9); transform: translateX(-50%) scale(1.1); }
-.tl-arrow:active { transform: translateX(-50%) scale(0.95); background: rgba(255,255,255,.3); }
+.tl-arrow svg    { width: 20px; height: 20px; display: block; }
+.tl-arrow:hover  { background: rgba(255,255,255,.18); border-color: rgba(255,255,255,.85); transform: translateX(-50%) scale(1.1); }
+.tl-arrow:active { transform: translateX(-50%) scale(0.94); }
 .tl-arrow.hidden { opacity: 0 !important; pointer-events: none !important; }
 
+/* 200px buffer from each edge */
 .tl-arrow-up   { top: 200px; }
 .tl-arrow-down { bottom: 200px; }
+
+/* Clamp so arrows stay visible on shorter screens */
+@media (max-height: 600px) {
+    .tl-arrow-up   { top: 60px; }
+    .tl-arrow-down { bottom: 60px; }
+}
 
 /* ---- Story counter ---- */
 .tl-counter {
     position: absolute;
-    right: 20px; bottom: 28px;
+    right: 20px; bottom: 20px;
     z-index: 30;
-    color: rgba(255,255,255,.55);
-    font-size: .8rem;
-    letter-spacing: .05em;
+    color: rgba(255,255,255,.5);
+    font-size: .78rem;
+    letter-spacing: .06em;
     pointer-events: none;
 }
 
 
 /* ============================================================
-   MOBILE  (≤ 768px)
-   Sidebar → sticky horizontal tab bar at top of section.
-   Panels still stack absolutely and slide vertically.
-   Arrows centre across full screen width.
+   MOBILE (≤ 768px)
+   Sidebar → horizontal tab bar pinned at top of section.
+   Section fills remaining viewport after navbar.
+   Arrows centred across full width, clear the tab bar.
    ============================================================ */
 @media (max-width: 768px) {
 
     #experience {
-        flex-direction: column;  /* sidebar on top, pane below */
-        height: calc(100vh - 56px);   /* minus fixed navbar */
+        flex-direction: column;
+        height: calc(100vh - var(--navbar-h));
+        max-height: none;
     }
 
-    /* Horizontal tab bar */
+    /* Horizontal scrolling tab bar */
     .tl-sidebar {
         width: 100%; min-width: unset;
         height: auto; flex-shrink: 0;
         flex-direction: row; flex-wrap: nowrap; align-items: center;
-        padding: 8px 12px; gap: 0;
+        padding: 0 12px; gap: 0;
         border-right: none;
         border-bottom: 1px solid rgba(255,255,255,.15);
         overflow-x: auto; overflow-y: visible;
@@ -269,38 +278,40 @@ section { scroll-margin-top: 56px; }
         border-left: none;
         border-bottom: 3px solid transparent;
         border-radius: 0;
-        padding: 6px 12px;
+        padding: 10px 14px;
         white-space: nowrap;
     }
     .tl-nav-item.active { border-bottom-color: #667eea; background: transparent; }
     .tl-nav-title { font-size: .8rem; white-space: nowrap; margin-bottom: 2px; }
     .tl-nav-meta  { font-size: .7rem; }
 
-    /* Pane fills remaining height */
+    /* Pane fills the remaining space */
     .tl-scroll-pane { flex: 1; min-height: 0; }
 
-    /* Gradient switches to top→bottom on portrait screens */
+    /* Touch action re-enabled for swipe gesture (JS handles it) */
+    .tl-scroll-pane { touch-action: pan-y; }
+
+    /* Gradient top→bottom on portrait */
     .tl-overlay {
         background: linear-gradient(
             to bottom,
-            rgba(0,0,0,.85)  0%,
-            rgba(0,0,0,.6)  50%,
-            rgba(0,0,0,.25) 100%
+            rgba(0,0,0,.82)  0%,
+            rgba(0,0,0,.55) 55%,
+            rgba(0,0,0,.2)  100%
         );
     }
     .tl-bg img { object-position: center top; }
 
-    /* Text fills more of the width */
     .tl-content { width: 88%; margin-left: 6%; }
-    .tl-title   { font-size: clamp(1.5rem, 6vw, 2rem); }
-    .tl-text    { font-size: .95rem; line-height: 1.75; }
+    .tl-title   { font-size: clamp(1.4rem, 5.5vw, 1.9rem); }
+    .tl-text    { font-size: .9rem; line-height: 1.7; }
 
-    /* Arrows centre across full screen */
-    .tl-arrow      { left: 50%; width: 48px; height: 48px; }
-    .tl-arrow svg  { width: 20px; height: 20px; }
-    /* top arrow: push below the tab bar (sidebar ~50px) + buffer */
-    .tl-arrow-up   { top: calc(50px + 24px); }
-    .tl-arrow-down { bottom: 24px; }
+    /* Arrows centred across full width */
+    .tl-arrow { left: 50%; width: 44px; height: 44px; }
+    .tl-arrow svg { width: 18px; height: 18px; }
+    /* Push top arrow below the tab bar (~50px) + 16px gap */
+    .tl-arrow-up   { top: calc(50px + 16px); }
+    .tl-arrow-down { bottom: 16px; }
 
-    .tl-counter { right: 14px; bottom: 18px; }
+    .tl-counter { right: 12px; bottom: 12px; }
 }
