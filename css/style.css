@@ -132,10 +132,8 @@ section { scroll-margin-top: var(--navbar-h); }
 .tl-scroll-pane {
     flex: 1;
     height: 100%;
-    overflow: hidden;       /* completely locked — no scroll at all */
+    overflow: hidden;       /* no free scroll within pane — panels are absolutely stacked */
     position: relative;
-    /* Prevent any touch scroll bleeding in */
-    touch-action: none;
 }
 
 /* ---- Story panels (absolutely stacked, slide vertically) ---- */
@@ -191,10 +189,19 @@ section { scroll-margin-top: var(--navbar-h); }
 .tl-content {
     position: relative;
     z-index: 2;
-    width: min(480px, 55%);
+    width: min(520px, 60%);
+    max-height: 75%;           /* don't let it overflow vertically */
     margin-left: 6%;
+    padding-right: 20px;       /* space for scrollbar */
     color: white;
+    overflow-y: auto;          /* scroll if text is too long */
+    overflow-x: hidden;
 }
+/* Custom scrollbar for story text */
+.tl-content::-webkit-scrollbar { width: 4px; }
+.tl-content::-webkit-scrollbar-track { background: rgba(255,255,255,.1); border-radius: 2px; }
+.tl-content::-webkit-scrollbar-thumb { background: rgba(255,255,255,.3); border-radius: 2px; }
+.tl-content::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,.5); }
 .tl-location { display: flex; align-items: center; gap: 8px; font-size: .9rem; color: rgba(255,255,255,.75); margin-bottom: 8px; }
 .tl-location span { font-size: 1.3rem; }
 .tl-title    { font-size: clamp(1.5rem, 2.5vw, 2.4rem); font-weight: 700; line-height: 1.15; margin-bottom: 10px; }
@@ -271,13 +278,13 @@ section { scroll-margin-top: var(--navbar-h); }
 .tl-arrow.hidden { opacity: 0 !important; pointer-events: none !important; }
 
 /* 200px buffer from each edge */
-.tl-arrow-up   { top: 200px; }
-.tl-arrow-down { bottom: 200px; }
+.tl-arrow-up   { top: 50%; transform: translate(-50%, calc(-50% - 120px)); }
+.tl-arrow-down { bottom: 50%; transform: translate(-50%, calc(50% + 120px)); }
 
 /* Clamp so arrows stay visible on shorter screens */
 @media (max-height: 600px) {
-    .tl-arrow-up   { top: 60px; }
-    .tl-arrow-down { bottom: 60px; }
+    .tl-arrow-up   { transform: translate(-50%, calc(-50% - 60px)); }
+    .tl-arrow-down { transform: translate(-50%, calc(50% + 60px)); }
 }
 
 /* ---- Story counter ---- */
@@ -357,9 +364,9 @@ section { scroll-margin-top: var(--navbar-h); }
     /* Arrows centred across full width */
     .tl-arrow { left: 50%; width: 44px; height: 44px; }
     .tl-arrow svg { width: 18px; height: 18px; }
-    /* Push top arrow below the tab bar (~50px) + 16px gap */
-    .tl-arrow-up   { top: calc(50px + 16px); }
-    .tl-arrow-down { bottom: 16px; }
+    /* Vertically centered with offset for tab bar */
+    .tl-arrow-up   { top: 50%; transform: translate(-50%, calc(-50% - 80px)); }
+    .tl-arrow-down { bottom: 50%; transform: translate(-50%, calc(50% + 80px)); }
 
     .tl-counter { right: 12px; bottom: 12px; }
 }
