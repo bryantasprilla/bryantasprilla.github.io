@@ -3,9 +3,13 @@
    ============================================================ */
 
 :root {
-    --primary: #0d6efd;
-    --dark:    #212529;
-    --light:   #f8f9fa;
+    --primary: #72ADF5;        /* Sky blue - primary actions */
+    --secondary: #DE7846;      /* Warm orange - accents */
+    --dark: #000000;           /* Black - text/contrast */
+    --charcoal: #696A6F;       /* Charcoal gray - subtle text */
+    --light: #E0E5EE;          /* Light blue-gray - backgrounds */
+    --mint: #B9E7C0;           /* Mint green - highlights */
+    --brown: #5D412A;          /* Dark brown - depth */
     --navbar-h: 56px;
 }
 
@@ -27,10 +31,10 @@ section { scroll-margin-top: var(--navbar-h); }
 }
 
 /* ---- Navbar ---- */
-.navbar       { box-shadow: 0 2px 4px rgba(0,0,0,.1); }
-.navbar-brand { font-weight: 700; font-size: 1.5rem; }
-.nav-link     { font-weight: 500; }
-.nav-link:hover { color: var(--primary) !important; }
+.navbar       { box-shadow: 0 2px 4px rgba(0,0,0,.1); background-color: var(--charcoal) !important; }
+.navbar-brand { font-weight: 700; font-size: 1.5rem; color: white !important; }
+.nav-link     { font-weight: 500; color: rgba(255,255,255,.85) !important; }
+.nav-link:hover { color: var(--mint) !important; }
 
 /* ---- Hero ---- */
 .hero-section {
@@ -46,21 +50,22 @@ section { scroll-margin-top: var(--navbar-h); }
 .hero-section .container { position: relative; z-index: 1; }
 .profile-img { display: none; }
 .hero-section .btn               { padding: 12px 30px; font-weight: 600; border-radius: 50px; transition: all .3s; }
-.hero-section .btn-primary       { background: white; color: var(--primary); border: none; }
-.hero-section .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 16px rgba(0,0,0,.2); }
-.hero-section .btn-outline-secondary       { border-color: white; color: white; }
-.hero-section .btn-outline-secondary:hover { background: white; color: var(--dark); transform: translateY(-2px); }
-.social-links .btn { width: 40px; height: 40px; border-radius: 50%; padding: 0; display: inline-flex; align-items: center; justify-content: center; margin: 0 5px; border-color: white; color: white; transition: all .3s; }
-.social-links .btn:hover { background: white; color: var(--dark); transform: translateY(-2px); }
+.hero-section .btn-primary       { background: var(--mint); color: var(--dark); border: none; }
+.hero-section .btn-primary:hover { background: #a3daa8; transform: translateY(-2px); box-shadow: 0 8px 16px rgba(185,231,192,.4); }
+.hero-section .btn-outline-secondary       { border-color: var(--mint); color: var(--mint); background: rgba(185,231,192,.1); }
+.hero-section .btn-outline-secondary:hover { background: var(--mint); color: var(--dark); transform: translateY(-2px); }
+.social-links .btn { width: 40px; height: 40px; border-radius: 50%; padding: 0; display: inline-flex; align-items: center; justify-content: center; margin: 0 5px; border-color: var(--mint); color: var(--mint); transition: all .3s; }
+.social-links .btn:hover { background: var(--mint); color: var(--dark); transform: translateY(-2px); }
 
 /* ---- Misc ---- */
-.badge          { font-weight: 500; padding: 8px 12px; }
-.contact-info i { color: var(--primary); }
+.badge          { font-weight: 500; padding: 8px 12px; background-color: var(--primary) !important; }
+.contact-info i { color: var(--secondary); }
 
 /* ---- Scrollbar ---- */
 ::-webkit-scrollbar       { width: 8px; }
 ::-webkit-scrollbar-track { background: var(--light); }
 ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #5a9ae6; }
 
 @media (max-width: 768px) {
     .hero-section { background-attachment: scroll; }
@@ -71,19 +76,17 @@ section { scroll-margin-top: var(--navbar-h); }
    EXPERIENCE TIMELINE
    Section is 80vh tall on desktop so adjacent sections peek.
    Panels are absolutely stacked; only arrows + sidebar navigate.
-   No scroll events used anywhere in this section.
+   Page scroll works normally over this section.
    ============================================================ */
 
 #experience {
     display: flex;
     flex-direction: row;
-    /* 80vh: sections above/below peek — never taller than viewport */
     height: 80vh;
-    max-height: 700px;      /* cap on very tall screens */
+    max-height: 700px;
     overflow: hidden;
     position: relative;
     scroll-margin-top: var(--navbar-h);
-    /* Subtle top/bottom borders to frame the section */
     border-top:    1px solid rgba(0,0,0,.08);
     border-bottom: 1px solid rgba(0,0,0,.08);
 }
@@ -94,8 +97,8 @@ section { scroll-margin-top: var(--navbar-h); }
     min-width: 175px;
     flex-shrink: 0;
     height: 100%;
-    background: rgba(0,0,0,.93);
-    border-right: 1px solid rgba(255,255,255,.1);
+    background: linear-gradient(180deg, var(--brown) 0%, #4a3322 100%);
+    border-right: 1px solid rgba(185,231,192,.15);
     padding: 36px 16px;
     overflow-y: auto;
     z-index: 10;
@@ -123,8 +126,8 @@ section { scroll-margin-top: var(--navbar-h); }
     opacity: .5;
     user-select: none;
 }
-.tl-nav-item:hover  { opacity: 1; background: rgba(255,255,255,.06); border-left-color: rgba(255,255,255,.4); }
-.tl-nav-item.active { opacity: 1; background: rgba(255,255,255,.1);  border-left-color: #667eea; }
+.tl-nav-item:hover  { opacity: 1; background: rgba(185,231,192,.1); border-left-color: rgba(185,231,192,.5); }
+.tl-nav-item.active { opacity: 1; background: rgba(185,231,192,.15);  border-left-color: var(--mint); }
 .tl-nav-title { color: white; font-weight: 600; font-size: .82rem; margin-bottom: 4px; line-height: 1.3; white-space: normal; word-break: break-word; }
 .tl-nav-meta  { color: rgba(255,255,255,.5); font-size: .73rem; }
 
@@ -132,8 +135,9 @@ section { scroll-margin-top: var(--navbar-h); }
 .tl-scroll-pane {
     flex: 1;
     height: 100%;
-    overflow: hidden;       /* no free scroll within pane — panels are absolutely stacked */
+    overflow: hidden;
     position: relative;
+    pointer-events: none;  /* let page scroll events pass through */
 }
 
 /* ---- Story panels (absolutely stacked, slide vertically) ---- */
@@ -143,12 +147,15 @@ section { scroll-margin-top: var(--navbar-h); }
     display: flex;
     align-items: center;
     overflow: hidden;
-    /* Unique gradient per panel used as background — no external images needed */
     background: #1a1a2e;
     transform: translateY(100%);
     transition: transform 0.42s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;  /* let page scroll through */
 }
-.tl-panel.active { transform: translateY(0%);    }
+.tl-panel.active { 
+    transform: translateY(0%);
+    pointer-events: auto;  /* active panel can receive clicks */
+}
 .tl-panel.above  { transform: translateY(-100%); }
 
 /* Per-panel background gradients */
@@ -161,15 +168,12 @@ section { scroll-margin-top: var(--navbar-h); }
 .tl-panel[data-index="6"] { background: linear-gradient(135deg, #1a1a2e 0%, #2d3436 50%, #636e72 100%); }
 .tl-panel[data-index="7"] { background: linear-gradient(135deg, #1a0a00 0%, #5e3023 50%, #9c6644 100%); }
 
-/* ---- Background image (layered on top of gradient) ---- */
-.tl-bg {
-    position: absolute; inset: 0; z-index: 0;
-}
+/* ---- Background image (layered on gradient) ---- */
+.tl-bg { position: absolute; inset: 0; z-index: 0; }
 .tl-bg img {
     width: 100%; height: 100%;
     object-fit: cover;
     object-position: 65% center;
-    /* If image fails to load, gradient background shows through */
     opacity: 0.6;
 }
 .tl-overlay {
@@ -190,18 +194,18 @@ section { scroll-margin-top: var(--navbar-h); }
     position: relative;
     z-index: 2;
     width: min(520px, 60%);
-    max-height: 75%;           /* don't let it overflow vertically */
+    max-height: 75%;
     margin-left: 6%;
-    padding-right: 20px;       /* space for scrollbar */
+    padding-right: 20px;
     color: white;
-    overflow-y: auto;          /* scroll if text is too long */
+    overflow-y: auto;
     overflow-x: hidden;
 }
-/* Custom scrollbar for story text */
 .tl-content::-webkit-scrollbar { width: 4px; }
 .tl-content::-webkit-scrollbar-track { background: rgba(255,255,255,.1); border-radius: 2px; }
 .tl-content::-webkit-scrollbar-thumb { background: rgba(255,255,255,.3); border-radius: 2px; }
 .tl-content::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,.5); }
+
 .tl-location { display: flex; align-items: center; gap: 8px; font-size: .9rem; color: rgba(255,255,255,.75); margin-bottom: 8px; }
 .tl-location span { font-size: 1.3rem; }
 .tl-title    { font-size: clamp(1.5rem, 2.5vw, 2.4rem); font-weight: 700; line-height: 1.15; margin-bottom: 10px; }
@@ -210,32 +214,37 @@ section { scroll-margin-top: var(--navbar-h); }
 .tl-text a   { color: rgba(255,255,255,.9); text-decoration: underline; text-underline-offset: 3px; transition: color .2s; }
 .tl-text a:hover { color: #ffffff; }
 
-/* ---- Fun fact easter egg ---- */
+/* ---- Fun fact: Lightbulb Pulse ---- */
 .tl-fun-trigger {
-    width: 32px; height: 32px;
+    width: 36px; height: 36px;
     border-radius: 50%;
-    border: 2px solid rgba(255,255,255,.35);
-    background: rgba(255,255,255,.08);
-    color: rgba(255,255,255,.7);
+    border: none;
+    background: linear-gradient(135deg, rgba(222,120,70,.25), rgba(222,120,70,.35));
+    color: var(--secondary);
     cursor: pointer;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     margin-top: 12px;
-    transition: all .25s;
-    backdrop-filter: blur(4px);
+    transition: all .3s;
+    box-shadow: 0 0 0 0 rgba(222,120,70,.4);
+    animation: pulse 2s infinite;
 }
-.tl-fun-trigger svg { width: 18px; height: 18px; }
+@keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(222,120,70,.4); }
+    50% { box-shadow: 0 0 0 8px rgba(222,120,70,0); }
+}
+.tl-fun-trigger svg { width: 20px; height: 20px; }
 .tl-fun-trigger:hover {
-    background: rgba(255,255,255,.18);
-    border-color: rgba(255,255,255,.65);
-    color: rgba(255,255,255,1);
-    transform: scale(1.08);
+    background: linear-gradient(135deg, rgba(222,120,70,.4), rgba(222,120,70,.5));
+    color: #fff;
+    transform: scale(1.1);
+    animation: none;
 }
 .tl-fun-trigger.active {
-    background: rgba(255,255,255,.25);
-    border-color: rgba(255,255,255,.8);
-    transform: rotate(180deg);
+    background: linear-gradient(135deg, rgba(222,120,70,.6), rgba(222,120,70,.7));
+    transform: scale(1.1) rotate(15deg);
+    animation: none;
 }
 
 .tl-fun-fact {
@@ -255,7 +264,6 @@ section { scroll-margin-top: var(--navbar-h); }
 /* ---- Navigation arrows ---- */
 .tl-arrow {
     position: absolute;
-    /* Centred over the story pane area only (right of sidebar) */
     left: calc(175px + (100% - 175px) / 2);
     transform: translateX(-50%);
     z-index: 30;
@@ -271,20 +279,19 @@ section { scroll-margin-top: var(--navbar-h); }
     transition: opacity .25s, background .2s, border-color .2s, transform .2s;
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
+    pointer-events: auto;  /* arrows always clickable */
 }
 .tl-arrow svg    { width: 20px; height: 20px; display: block; }
 .tl-arrow:hover  { background: rgba(255,255,255,.18); border-color: rgba(255,255,255,.85); transform: translateX(-50%) scale(1.1); }
 .tl-arrow:active { transform: translateX(-50%) scale(0.94); }
 .tl-arrow.hidden { opacity: 0 !important; pointer-events: none !important; }
 
-/* 200px buffer from each edge */
-.tl-arrow-up   { top: 50%; transform: translate(-50%, calc(-50% - 120px)); }
-.tl-arrow-down { bottom: 50%; transform: translate(-50%, calc(50% + 120px)); }
+.tl-arrow-up   { top: 100px; }
+.tl-arrow-down { bottom: 100px; }
 
-/* Clamp so arrows stay visible on shorter screens */
 @media (max-height: 600px) {
-    .tl-arrow-up   { transform: translate(-50%, calc(-50% - 60px)); }
-    .tl-arrow-down { transform: translate(-50%, calc(50% + 60px)); }
+    .tl-arrow-up   { top: 60px; }
+    .tl-arrow-down { bottom: 60px; }
 }
 
 /* ---- Story counter ---- */
@@ -301,9 +308,6 @@ section { scroll-margin-top: var(--navbar-h); }
 
 /* ============================================================
    MOBILE (≤ 768px)
-   Sidebar → horizontal tab bar pinned at top of section.
-   Section fills remaining viewport after navbar.
-   Arrows centred across full width, clear the tab bar.
    ============================================================ */
 @media (max-width: 768px) {
 
@@ -313,7 +317,6 @@ section { scroll-margin-top: var(--navbar-h); }
         max-height: none;
     }
 
-    /* Horizontal scrolling tab bar */
     .tl-sidebar {
         width: 100%; min-width: unset;
         height: auto; flex-shrink: 0;
@@ -324,6 +327,7 @@ section { scroll-margin-top: var(--navbar-h); }
         overflow-x: auto; overflow-y: visible;
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
+        pointer-events: auto;
     }
     .tl-sidebar::-webkit-scrollbar { display: none; }
     .tl-sidebar-heading { display: none; }
@@ -336,17 +340,12 @@ section { scroll-margin-top: var(--navbar-h); }
         padding: 10px 14px;
         white-space: nowrap;
     }
-    .tl-nav-item.active { border-bottom-color: #667eea; background: transparent; }
+    .tl-nav-item.active { border-bottom-color: var(--mint); background: transparent; }
     .tl-nav-title { font-size: .8rem; white-space: nowrap; margin-bottom: 2px; }
     .tl-nav-meta  { font-size: .7rem; }
 
-    /* Pane fills the remaining space */
     .tl-scroll-pane { flex: 1; min-height: 0; }
 
-    /* Touch action re-enabled for swipe gesture (JS handles it) */
-    .tl-scroll-pane { touch-action: pan-y; }
-
-    /* Gradient top→bottom on portrait */
     .tl-overlay {
         background: linear-gradient(
             to bottom,
@@ -361,12 +360,10 @@ section { scroll-margin-top: var(--navbar-h); }
     .tl-title   { font-size: clamp(1.4rem, 5.5vw, 1.9rem); }
     .tl-text    { font-size: .9rem; line-height: 1.7; }
 
-    /* Arrows centred across full width */
     .tl-arrow { left: 50%; width: 44px; height: 44px; }
     .tl-arrow svg { width: 18px; height: 18px; }
-    /* Vertically centered with offset for tab bar */
-    .tl-arrow-up   { top: 50%; transform: translate(-50%, calc(-50% - 80px)); }
-    .tl-arrow-down { bottom: 50%; transform: translate(-50%, calc(50% + 80px)); }
+    .tl-arrow-up   { top: 70px; }
+    .tl-arrow-down { bottom: 20px; }
 
     .tl-counter { right: 12px; bottom: 12px; }
 }
