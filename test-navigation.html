@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Story Section Test</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body { margin: 0; padding: 0; }
+        .debug-panel {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: rgba(0,0,0,.9);
+            color: #0f0;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 12px;
+            z-index: 9999;
+            max-width: 300px;
+        }
+        .debug-panel h3 { margin: 0 0 10px 0; color: #0ff; font-size: 14px; }
+        .debug-line { margin: 3px 0; }
+        .ok { color: #0f0; }
+        .error { color: #f00; }
+        .warn { color: #ff0; }
+    </style>
+</head>
+<body>
+
+    <!-- Debug Panel -->
+    <div class="debug-panel" id="debug">
+        <h3>🔍 Navigation Test</h3>
+        <div id="debugOutput"></div>
+    </div>
+
+    <!-- EXPERIENCE TIMELINE (isolated) -->
+    <section id="experience">
+        <nav class="tl-sidebar" id="tlSidebar">
+            <div class="tl-sidebar-heading">My Journey</div>
+            <div class="tl-nav-item active" data-index="0">
+                <div class="tl-nav-title">Story 1</div>
+                <div class="tl-nav-meta">Test</div>
+            </div>
+            <div class="tl-nav-item" data-index="1">
+                <div class="tl-nav-title">Story 2</div>
+                <div class="tl-nav-meta">Test</div>
+            </div>
+            <div class="tl-nav-item" data-index="2">
+                <div class="tl-nav-title">Story 3</div>
+                <div class="tl-nav-meta">Test</div>
+            </div>
+        </nav>
+
+        <div class="tl-scroll-pane" id="tlPane">
+            <div class="tl-panel active" data-index="0">
+                <div class="tl-bg">
+                    <img src="https://images.unsplash.com/photo-1514565131-fce0801e5785?w=1920&q=80" alt="Test">
+                    <div class="tl-overlay"></div>
+                </div>
+                <div class="tl-content">
+                    <h2 class="tl-title">Story 1</h2>
+                    <p class="tl-text">This is test content for story 1.</p>
+                    <button class="tl-fun-trigger" aria-label="Reveal fun fact">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 18h6"></path>
+                            <path d="M10 22h4"></path>
+                            <path d="M15 2a6 6 0 0 1 2.5 11.5v1a2 2 0 0 1-2 2h-7a2 2 0 0 1-2-2v-1A6 6 0 0 1 9 2z"></path>
+                        </svg>
+                    </button>
+                    <div class="tl-fun-fact">
+                        <p class="tl-text"><strong>Fun Fact:</strong> This is a test fun fact.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tl-panel" data-index="1">
+                <div class="tl-bg">
+                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&q=80" alt="Test">
+                    <div class="tl-overlay"></div>
+                </div>
+                <div class="tl-content">
+                    <h2 class="tl-title">Story 2</h2>
+                    <p class="tl-text">This is test content for story 2.</p>
+                    <button class="tl-fun-trigger" aria-label="Reveal fun fact">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 18h6"></path>
+                            <path d="M10 22h4"></path>
+                            <path d="M15 2a6 6 0 0 1 2.5 11.5v1a2 2 0 0 1-2 2h-7a2 2 0 0 1-2-2v-1A6 6 0 0 1 9 2z"></path>
+                        </svg>
+                    </button>
+                    <div class="tl-fun-fact">
+                        <p class="tl-text"><strong>Fun Fact:</strong> Another test fun fact.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tl-panel" data-index="2">
+                <div class="tl-bg">
+                    <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1920&q=80" alt="Test">
+                    <div class="tl-overlay"></div>
+                </div>
+                <div class="tl-content">
+                    <h2 class="tl-title">Story 3</h2>
+                    <p class="tl-text">This is test content for story 3.</p>
+                    <button class="tl-fun-trigger" aria-label="Reveal fun fact">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 18h6"></path>
+                            <path d="M10 22h4"></path>
+                            <path d="M15 2a6 6 0 0 1 2.5 11.5v1a2 2 0 0 1-2 2h-7a2 2 0 0 1-2-2v-1A6 6 0 0 1 9 2z"></path>
+                        </svg>
+                    </button>
+                    <div class="tl-fun-fact">
+                        <p class="tl-text"><strong>Fun Fact:</strong> Third test fun fact.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button class="tl-arrow tl-arrow-up hidden" id="tlUp" aria-label="Previous">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="18 15 12 9 6 15"></polyline>
+            </svg>
+        </button>
+        <button class="tl-arrow tl-arrow-down" id="tlDown" aria-label="Next">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+        </button>
+
+        <div class="tl-counter" id="tlCounter">1 / 3</div>
+    </section>
+
+    <script>
+    /* Debug logger */
+    var debugOutput = document.getElementById('debugOutput');
+    function log(msg, type) {
+        type = type || 'ok';
+        var line = document.createElement('div');
+        line.className = 'debug-line ' + type;
+        line.textContent = msg;
+        debugOutput.appendChild(line);
+    }
+
+    log('Script loaded', 'ok');
+
+    /* Main navigation code */
+    (function () {
+        var panels   = Array.from(document.querySelectorAll('#experience .tl-panel'));
+        var navItems = Array.from(document.querySelectorAll('#tlSidebar .tl-nav-item'));
+        var btnUp    = document.getElementById('tlUp');
+        var btnDown  = document.getElementById('tlDown');
+        var counter  = document.getElementById('tlCounter');
+        var pane     = document.getElementById('tlPane');
+        var total    = panels.length;
+        var current  = 0;
+        var busy     = false;
+
+        log('Found ' + panels.length + ' panels', panels.length === 3 ? 'ok' : 'error');
+        log('Found ' + navItems.length + ' nav items', navItems.length === 3 ? 'ok' : 'error');
+        log('Arrow up: ' + (btnUp ? 'OK' : 'MISSING'), btnUp ? 'ok' : 'error');
+        log('Arrow down: ' + (btnDown ? 'OK' : 'MISSING'), btnDown ? 'ok' : 'error');
+
+        function layout() {
+            panels.forEach(function(p, i) {
+                p.classList.remove('active', 'above');
+                if      (i === current) { p.classList.add('active'); }
+                else if (i < current)   { p.classList.add('above');  }
+            });
+            log('Layout: panel ' + current + ' active', 'ok');
+        }
+
+        function updateUI() {
+            navItems.forEach(function(n, i) { n.classList.toggle('active', i === current); });
+            btnUp.classList.toggle('hidden',   current === 0);
+            btnDown.classList.toggle('hidden', current === total - 1);
+            if (counter) counter.textContent = (current + 1) + ' / ' + total;
+            log('UI updated: ' + (current + 1) + '/' + total, 'ok');
+        }
+
+        function goTo(i) {
+            if (busy || i < 0 || i >= total || i === current) {
+                log('goTo(' + i + ') blocked (busy=' + busy + ')', 'warn');
+                return;
+            }
+            busy = true;
+            current = i;
+            layout();
+            updateUI();
+            log('Navigated to panel ' + i, 'ok');
+            setTimeout(function() { busy = false; }, 480);
+        }
+
+        /* Arrow clicks */
+        btnUp.addEventListener('click', function() {
+            log('Up arrow clicked', 'ok');
+            goTo(current - 1);
+        });
+        btnDown.addEventListener('click', function() {
+            log('Down arrow clicked', 'ok');
+            goTo(current + 1);
+        });
+
+        /* Sidebar nav */
+        navItems.forEach(function(item, i) {
+            item.addEventListener('click', function() {
+                log('Nav item ' + i + ' clicked', 'ok');
+                goTo(i);
+            });
+        });
+
+        /* Keyboard */
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowDown') { 
+                e.preventDefault(); 
+                log('Keyboard: Down', 'ok');
+                goTo(current + 1);
+            }
+            if (e.key === 'ArrowUp') { 
+                e.preventDefault(); 
+                log('Keyboard: Up', 'ok');
+                goTo(current - 1);
+            }
+        });
+
+        /* Touch swipe */
+        var swipeStartY = 0;
+        var swipeStartX = 0;
+        pane.addEventListener('touchstart', function(e) {
+            swipeStartY = e.touches[0].clientY;
+            swipeStartX = e.touches[0].clientX;
+        }, { passive: true });
+        pane.addEventListener('touchend', function(e) {
+            var dy = swipeStartY - e.changedTouches[0].clientY;
+            var dx = swipeStartX - e.changedTouches[0].clientX;
+            if (Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > 60) {
+                log('Touch swipe: ' + (dy > 0 ? 'up' : 'down'), 'ok');
+                goTo(dy > 0 ? current + 1 : current - 1);
+            }
+        }, { passive: true });
+
+        /* Fun fact toggles */
+        var triggers = document.querySelectorAll('.tl-fun-trigger');
+        log('Found ' + triggers.length + ' lightbulbs', triggers.length === 3 ? 'ok' : 'error');
+        
+        triggers.forEach(function(btn, idx) {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                log('Lightbulb ' + idx + ' clicked', 'ok');
+                var fact = btn.nextElementSibling;
+                var isRevealed = fact.classList.contains('revealed');
+                fact.classList.toggle('revealed');
+                btn.classList.toggle('active');
+                log('Fun fact ' + (isRevealed ? 'hidden' : 'revealed'), 'ok');
+            });
+        });
+
+        /* Init */
+        layout();
+        updateUI();
+        log('Initialization complete', 'ok');
+    })();
+    </script>
+
+</body>
+</html>
