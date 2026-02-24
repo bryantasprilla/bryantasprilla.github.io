@@ -96,7 +96,7 @@ section { scroll-margin-top: var(--navbar-h); }
     border-right: 1px solid rgba(255,255,255,.1);
     padding: 36px 16px;
     overflow-y: auto;
-    z-index: 10;
+    z-index: 50;  /* Increased from 10 */
     display: flex;
     flex-direction: column;
     gap: 4px;
@@ -195,6 +195,7 @@ section { scroll-margin-top: var(--navbar-h); }
     color: white;
     overflow-y: auto;
     overflow-x: hidden;
+    pointer-events: auto;  /* Ensure content is clickable */
 }
 .tl-content::-webkit-scrollbar { width: 4px; }
 .tl-content::-webkit-scrollbar-track { background: rgba(255,255,255,.1); border-radius: 2px; }
@@ -211,6 +212,8 @@ section { scroll-margin-top: var(--navbar-h); }
 
 /* ---- Fun fact: Lightbulb Pulse ---- */
 .tl-fun-trigger {
+    position: relative;
+    z-index: 10;
     width: 36px; height: 36px;
     border-radius: 50%;
     border: none;
@@ -224,6 +227,7 @@ section { scroll-margin-top: var(--navbar-h); }
     transition: all .3s;
     box-shadow: 0 0 0 0 rgba(255,215,0,.4);
     animation: pulse 2s infinite;
+    pointer-events: auto;
 }
 @keyframes pulse {
     0%, 100% { box-shadow: 0 0 0 0 rgba(255,215,0,.4); }
@@ -261,7 +265,7 @@ section { scroll-margin-top: var(--navbar-h); }
     position: absolute;
     left: calc(175px + (100% - 175px) / 2);
     transform: translateX(-50%);
-    z-index: 30;
+    z-index: 100;  /* Increased from 30 to be above all content */
     width: 48px; height: 48px;
     border-radius: 50%;
     border: 2px solid rgba(255,255,255,.4);
@@ -293,7 +297,7 @@ section { scroll-margin-top: var(--navbar-h); }
 .tl-counter {
     position: absolute;
     right: 20px; bottom: 20px;
-    z-index: 30;
+    z-index: 100;  /* Increased to match arrows */
     color: rgba(255,255,255,.5);
     font-size: .78rem;
     letter-spacing: .06em;
