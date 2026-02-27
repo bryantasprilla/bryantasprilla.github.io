@@ -49,8 +49,7 @@
                     </div>
                     <div class="social-links">
                         <a href="https://www.linkedin.com/in/bryantasprilla" target="_blank" class="btn btn-outline-dark btn-sm"><i class="bi bi-linkedin"></i></a>
-                        <a href="https://github.com/bryantasprilla" target="_blank" class="btn btn-outline-dark btn-sm"><i class="bi bi-github"></i></a>
-                        <a href="/cdn-cgi/l/email-protection#492b3b3028273d283a393b20252528093028212626672a2624" class="btn btn-outline-dark btn-sm"><i class="bi bi-envelope"></i></a>
+                        <a href="mailto:Bryantasprilla@yahoo.com" class="btn btn-outline-dark btn-sm"><i class="bi bi-envelope"></i></a>
                     </div>
                 </div>
             </div>
@@ -389,7 +388,7 @@
                 <h2 class="section-title mb-4">Get In Touch</h2>
                 <p class="lead mb-4">Interested in discussing product strategy, GRC solutions, or collaboration opportunities? I&rsquo;d love to hear from you.</p>
                 <div class="row g-4 mb-4">
-                    <div class="col-md-4"><div class="contact-info"><i class="bi bi-envelope fs-3 mb-2"></i><p class="mb-0"><a href="/cdn-cgi/l/email-protection#2240505b434c56435152504b4e4e43625b434a4d4d0c414d4f" class="text-white text-decoration-none"><span class="__cf_email__" data-cfemail="6200101b030c16031112100b0e0e03221b030a0d0d4c010d0f">[email&#160;protected]</span></a></p></div></div>
+                    <div class="col-md-4"><div class="contact-info"><i class="bi bi-envelope fs-3 mb-2"></i><p class="mb-0"><a href="mailto:Bryantasprilla@yahoo.com" class="text-white text-decoration-none">Bryantasprilla@yahoo.com</a></p></div></div>
                     <div class="col-md-4"><div class="contact-info"><i class="bi bi-linkedin fs-3 mb-2"></i><p class="mb-0"><a href="https://www.linkedin.com/in/bryantasprilla" target="_blank" class="text-white text-decoration-none">LinkedIn Profile</a></p></div></div>
                     <div class="col-md-4"><div class="contact-info"><i class="bi bi-telephone fs-3 mb-2"></i><p class="mb-0"><a href="tel:+19176014462" class="text-white text-decoration-none">+1 (917) 601-4462</a></p></div></div>
                 </div>
@@ -465,22 +464,6 @@
             if (e.key === 'ArrowDown') { e.preventDefault(); goTo(current + 1); }
             if (e.key === 'ArrowUp')   { e.preventDefault(); goTo(current - 1); }
         });
-
-        /* Touch swipe (up = next, down = prev) */
-        var swipeStartY = 0;
-        var swipeStartX = 0;
-        pane.addEventListener('touchstart', function(e) {
-            swipeStartY = e.touches[0].clientY;
-            swipeStartX = e.touches[0].clientX;
-        }, { passive: true });
-        pane.addEventListener('touchend', function(e) {
-            var dy = swipeStartY - e.changedTouches[0].clientY;
-            var dx = swipeStartX - e.changedTouches[0].clientX;
-            /* Only trigger if vertical movement > horizontal (prevent conflict with page scroll) */
-            if (Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > 60) {
-                goTo(dy > 0 ? current + 1 : current - 1);
-            }
-        }, { passive: true });
 
         /* Init */
         layout();
