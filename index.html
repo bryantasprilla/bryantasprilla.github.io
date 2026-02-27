@@ -502,3 +502,17 @@
                 var panel = btn.closest('.tl-panel');
                 if (panel && !isRevealed) {
                     panel.querySelectorAll('.tl-fun-fact').forEach(function(f) {
+                        if (f !== fact) { f.classList.remove('revealed'); }
+                    });
+                    panel.querySelectorAll('.tl-fun-trigger').forEach(function(t) {
+                        if (t !== btn) { t.classList.remove('active'); }
+                    });
+                }
+            });
+        });
+
+    })();
+    </script>
+
+</body>
+</html>
