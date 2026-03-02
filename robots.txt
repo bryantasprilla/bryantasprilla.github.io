@@ -1,0 +1,50 @@
+# robots.txt for bryantasprilla.com
+# This file tells search engines and AI crawlers how to access the site
+
+# Allow all bots to crawl everything
+User-agent: *
+Allow: /
+
+# Explicitly welcome major AI crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: GoogleOther
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+# Welcome traditional search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+# Sitemap location (uncomment when you add a sitemap)
+# Sitemap: https://bryantasprilla.com/sitemap.xml
