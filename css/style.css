@@ -3,9 +3,9 @@
    ============================================================ */
 
 :root {
-    --primary: #6FA3D9;
-    --dark:    #4A2E22;
-    --light:   #E6F0FA;
+   --primary: #0d6efd;
+    --dark:    #212529;
+    --light:   #f8f9fa;
     --navbar-h: 56px;
 }
 
