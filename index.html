@@ -552,7 +552,17 @@
                 /* Toggle this fun fact */
                 fact.classList.toggle('revealed');
                 btn.classList.toggle('active');
-                
+
+                /* Scroll content area down so the revealed text is visible */
+                if (!isRevealed) {
+                    var content = btn.closest('.tl-content');
+                    if (content) {
+                        setTimeout(function() {
+                            content.scrollTo({ top: content.scrollHeight, behavior: 'smooth' });
+                        }, 50);
+                    }
+                }
+
                 /* Optional: close other fun facts in the same panel */
                 var panel = btn.closest('.tl-panel');
                 if (panel && !isRevealed) {
