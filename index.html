@@ -553,16 +553,15 @@
                 fact.classList.toggle('revealed');
                 btn.classList.toggle('active');
 
-                /* Scroll content area down so the revealed text is visible */
+                /* Chase the expanding content every frame so scroll feels instant */
                 if (!isRevealed) {
                     var content = btn.closest('.tl-content');
                     if (content) {
-                        fact.addEventListener('transitionend', function onEnd(ev) {
-                            if (ev.propertyName === 'max-height') {
-                                content.scrollTo({ top: content.scrollHeight, behavior: 'smooth' });
-                                fact.removeEventListener('transitionend', onEnd);
-                            }
-                        });
+                        var deadline = Date.now() + 450;
+                        (function chase() {
+                            content.scrollTop = content.scrollHeight;
+                            if (Date.now() < deadline) requestAnimationFrame(chase);
+                        })();
                     }
                 }
 
