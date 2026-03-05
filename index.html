@@ -211,8 +211,8 @@
             <div class="tl-panel" data-index="1">
                 <div class="tl-bg">
                     <img src="images/BryantArmy.jpg" alt="US Army" loading="lazy">
-                    <div class="tl-overlay"></div>
                     <canvas class="tl-particles"></canvas>
+                    <div class="tl-overlay"></div>
                 </div>
                 <div class="tl-content">
                     <div class="tl-location"><span>&#127482;&#127480;</span> United States</div>
@@ -236,8 +236,8 @@
             <div class="tl-panel" data-index="2">
                 <div class="tl-bg">
                     <img src="images/Adelphi.jpg" alt="Adelphi University" loading="lazy">
-                    <div class="tl-overlay"></div>
                     <canvas class="tl-particles"></canvas>
+                    <div class="tl-overlay"></div>
                 </div>
                 <div class="tl-content">
                     <div class="tl-location"><span>&#127482;&#127480;</span> Long Island, New York</div>
@@ -309,8 +309,8 @@
             <div class="tl-panel" data-index="5">
                 <div class="tl-bg">
                     <img src="images/BryantDubai.jpg" alt="Dubai healthcare" loading="lazy">
-                    <div class="tl-overlay"></div>
                     <canvas class="tl-particles"></canvas>
+                    <div class="tl-overlay"></div>
                 </div>
                 <div class="tl-content">
                     <div class="tl-location"><span>&#127462;&#127466;</span> Dubai, UAE</div>
@@ -334,8 +334,8 @@
             <div class="tl-panel" data-index="6">
                 <div class="tl-bg">
                     <img src="images/BryantBulgaria.jpg" alt="Bulgaria coast" loading="lazy">
-                    <div class="tl-overlay"></div>
                     <canvas class="tl-particles"></canvas>
+                    <div class="tl-overlay"></div>
                 </div>
                 <div class="tl-content">
                     <div class="tl-location"><span>&#127463;&#127468;</span> Varna, Bulgaria</div>
@@ -640,6 +640,7 @@
             if (zoneEnd <= zoneStart) return;
 
             ctx.save();
+            /* Draw blocks at high opacity — the overlay above us handles all darkening */
             for (var bx = zoneStart; bx < zoneEnd + sz; bx += sz) {
                 var t    = Math.min((bx - zoneStart) / (zoneEnd - zoneStart), 1.0);
                 /* sparse at left (~0%), ~90% filled at image edge */
@@ -651,11 +652,22 @@
                     var p = sampleAt(sampleCol, by + sz * 0.5);
                     if (p[3] < 50) continue;  /* skip transparent pixels */
 
-                    ctx.globalAlpha = 0.05 + t * 0.80;
+                    ctx.globalAlpha = 0.85;
                     ctx.fillStyle   = 'rgb(' + p[0] + ',' + p[1] + ',' + p[2] + ')';
                     ctx.fillRect(bx, by, sz - gap, sz - gap);
                 }
             }
+
+            /* Smooth gradient fade on the left edge so particles dissolve naturally */
+            ctx.globalCompositeOperation = 'destination-in';
+            var fadeEnd  = zoneStart + (zoneEnd - zoneStart) * 0.40;
+            var fadeMask = ctx.createLinearGradient(zoneStart, 0, fadeEnd, 0);
+            fadeMask.addColorStop(0, 'rgba(0,0,0,0)');
+            fadeMask.addColorStop(1, 'rgba(0,0,0,1)');
+            ctx.globalAlpha = 1.0;
+            ctx.fillStyle   = fadeMask;
+            ctx.fillRect(0, 0, panelW, panelH);
+
             ctx.restore();
         }
 
