@@ -212,6 +212,7 @@
                 <div class="tl-bg">
                     <img src="images/BryantArmy.jpg" alt="US Army" loading="lazy">
                     <div class="tl-overlay"></div>
+                    <canvas class="tl-particles"></canvas>
                 </div>
                 <div class="tl-content">
                     <div class="tl-location"><span>&#127482;&#127480;</span> United States</div>
@@ -236,6 +237,7 @@
                 <div class="tl-bg">
                     <img src="images/Adelphi.jpg" alt="Adelphi University" loading="lazy">
                     <div class="tl-overlay"></div>
+                    <canvas class="tl-particles"></canvas>
                 </div>
                 <div class="tl-content">
                     <div class="tl-location"><span>&#127482;&#127480;</span> Long Island, New York</div>
@@ -308,6 +310,7 @@
                 <div class="tl-bg">
                     <img src="images/BryantDubai.jpg" alt="Dubai healthcare" loading="lazy">
                     <div class="tl-overlay"></div>
+                    <canvas class="tl-particles"></canvas>
                 </div>
                 <div class="tl-content">
                     <div class="tl-location"><span>&#127462;&#127466;</span> Dubai, UAE</div>
@@ -332,6 +335,7 @@
                 <div class="tl-bg">
                     <img src="images/BryantBulgaria.jpg" alt="Bulgaria coast" loading="lazy">
                     <div class="tl-overlay"></div>
+                    <canvas class="tl-particles"></canvas>
                 </div>
                 <div class="tl-content">
                     <div class="tl-location"><span>&#127463;&#127468;</span> Varna, Bulgaria</div>
@@ -578,6 +582,103 @@
             });
         });
 
+    })();
+    </script>
+
+    <script>
+    /* ---- Static particle field for portrait panels (desktop only) ---- */
+    (function () {
+        var TARGET = [1, 2, 5, 6];
+        var N = 3000;
+
+        function drawParticles(panel) {
+            if (window.innerWidth <= 768) return;
+            var canvas = panel.querySelector('.tl-particles');
+            var img    = panel.querySelector('.tl-bg img');
+            if (!canvas || !img || canvas.dataset.drawn) return;
+
+            var panelW = panel.offsetWidth;
+            var panelH = panel.offsetHeight;
+            if (!panelW || !panelH || !img.naturalWidth) return;
+
+            canvas.dataset.drawn = '1';
+            canvas.width  = panelW;
+            canvas.height = panelH;
+            var ctx = canvas.getContext('2d');
+
+            /* Image rect: object-fit contain, object-position right center */
+            var iA  = img.naturalWidth / img.naturalHeight;
+            var pA  = panelW / panelH;
+            var dW  = (iA > pA) ? panelW     : panelH * iA;
+            var dH  = (iA > pA) ? panelW / iA : panelH;
+            var dX  = panelW - dW;           /* right-aligned */
+            var dY  = (panelH - dH) / 2;    /* vertically centred */
+
+            /* Sample ~250 colours from the left 6% strip of the image */
+            var palette = [];
+            try {
+                var tmp  = document.createElement('canvas');
+                tmp.width  = panelW;
+                tmp.height = panelH;
+                var tCtx = tmp.getContext('2d');
+                tCtx.drawImage(img, dX, dY, dW, dH);
+                var sw   = Math.max(1, Math.ceil(dW * 0.06));
+                var pxs  = tCtx.getImageData(dX, 0, sw, panelH).data;
+                var step = Math.max(4, Math.floor(pxs.length / 4 / 250)) * 4;
+                for (var i = 0; i < pxs.length; i += step) {
+                    var r = pxs[i], g = pxs[i+1], b = pxs[i+2], a = pxs[i+3];
+                    if (a < 80 || r + g + b < 45) continue;
+                    palette.push([r, g, b]);
+                }
+            } catch (e) { /* cross-origin fallback */ }
+            if (!palette.length) palette = [[160,130,100],[100,140,160],[120,100,140]];
+
+            /* Draw particles — zone: left edge of panel → 15% into image */
+            var zoneEnd = dX + dW * 0.15;
+            ctx.save();
+            for (var p = 0; p < N; p++) {
+                var t   = Math.pow(Math.random(), 2.2);          /* bias toward image edge */
+                var x   = t * zoneEnd;
+                var y   = Math.random() * panelH;
+                var op  = t < 0.15 ? t * 1.8 : 0.25 + t * 0.68;
+                var sz  = 0.7 + t * 3.0 + Math.random() * 0.6;
+                var col = palette[Math.floor(Math.random() * palette.length)];
+                ctx.globalAlpha = Math.min(op, 0.92);
+                ctx.fillStyle = 'rgb(' +
+                    Math.round(Math.max(0, Math.min(255, col[0] + (Math.random()-.5)*30))) + ',' +
+                    Math.round(Math.max(0, Math.min(255, col[1] + (Math.random()-.5)*30))) + ',' +
+                    Math.round(Math.max(0, Math.min(255, col[2] + (Math.random()-.5)*30))) + ')';
+                ctx.beginPath();
+                ctx.arc(x, y, sz, 0, 6.2832);
+                ctx.fill();
+            }
+            ctx.restore();
+        }
+
+        function setupPanel(idx) {
+            var panel = document.querySelector('.tl-panel[data-index="' + idx + '"]');
+            if (!panel) return;
+            var img = panel.querySelector('.tl-bg img');
+            if (!img) return;
+
+            function tryDraw() { drawParticles(panel); }
+
+            /* Draw immediately if image is already loaded */
+            if (img.complete && img.naturalWidth > 0) {
+                tryDraw();
+            } else {
+                img.addEventListener('load', tryDraw);
+            }
+
+            /* Also draw when panel becomes active (handles lazy-loaded images) */
+            new MutationObserver(function (muts) {
+                muts.forEach(function (m) {
+                    if (m.attributeName === 'class' && panel.classList.contains('active')) tryDraw();
+                });
+            }).observe(panel, { attributes: true });
+        }
+
+        document.addEventListener('DOMContentLoaded', function () { TARGET.forEach(setupPanel); });
     })();
     </script>
 

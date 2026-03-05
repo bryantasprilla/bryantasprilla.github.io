@@ -190,6 +190,15 @@ section { scroll-margin-top: var(--navbar-h); }
     );
 }
 
+/* ---- Particle field canvas (desktop portrait panels) ---- */
+.tl-particles {
+    position: absolute; inset: 0;
+    pointer-events: none;
+}
+@media (max-width: 768px) {
+    .tl-particles { display: none; }
+}
+
 /* ---- Story text ---- */
 .tl-content {
     position: relative;
