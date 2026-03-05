@@ -630,13 +630,13 @@
                 return [imgData[i], imgData[i+1], imgData[i+2], imgData[i+3]];
             }
 
-            /* Zone: 2/3 of panel width → left edge of image */
-            var sz        = 6;               /* block size px                  */
-            var gap       = 1;               /* gap between blocks              */
-            var zoneStart = panelW * 0.667;
-            var zoneEnd   = dX;              /* image left edge                 */
-            /* Sample column: 1.5% inside image left edge for accurate colors  */
-            var sampleCol = dX + Math.max(2, Math.round(dW * 0.015));
+            /* Zone: slightly past arrows (~55% of panel) → left edge of image */
+            var sz        = 7;               /* block size px                        */
+            var gap       = 1;               /* gap between blocks                   */
+            var zoneStart = panelW * 0.55;
+            var zoneEnd   = dX;              /* image left edge                      */
+            /* Sample 8% into the image — past the shadow edge, into subject colors */
+            var sampleCol = dX + Math.max(2, Math.round(dW * 0.08));
             if (zoneEnd <= zoneStart) return;
 
             ctx.save();
@@ -651,7 +651,7 @@
                     var p = sampleAt(sampleCol, by + sz * 0.5);
                     if (p[3] < 50) continue;  /* skip transparent pixels */
 
-                    ctx.globalAlpha = 0.10 + t * 0.85;
+                    ctx.globalAlpha = 0.05 + t * 0.80;
                     ctx.fillStyle   = 'rgb(' + p[0] + ',' + p[1] + ',' + p[2] + ')';
                     ctx.fillRect(bx, by, sz - gap, sz - gap);
                 }
