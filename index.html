@@ -586,10 +586,9 @@
     </script>
 
     <script>
-    /* ---- Static particle field for portrait panels (desktop only) ---- */
+    /* ---- Pixel-block edge transition for portrait panels (desktop only) ---- */
     (function () {
         var TARGET = [1, 2, 5, 6];
-        var N = 3000;
 
         function drawParticles(panel) {
             if (window.innerWidth <= 768) return;
@@ -607,55 +606,60 @@
             var ctx = canvas.getContext('2d');
 
             /* Image rect: object-fit contain, object-position right center */
-            var iA  = img.naturalWidth / img.naturalHeight;
-            var pA  = panelW / panelH;
-            var dW  = (iA > pA) ? panelW     : panelH * iA;
-            var dH  = (iA > pA) ? panelW / iA : panelH;
-            var dX  = panelW - dW;           /* right-aligned */
-            var dY  = (panelH - dH) / 2;    /* vertically centred */
+            var iA = img.naturalWidth / img.naturalHeight;
+            var pA = panelW / panelH;
+            var dW = (iA > pA) ? panelW      : panelH * iA;
+            var dH = (iA > pA) ? panelW / iA : panelH;
+            var dX = panelW - dW;           /* right-aligned  */
+            var dY = (panelH - dH) / 2;    /* vertically centred */
 
-            /* Sample ~250 colours from the left 6% strip of the image */
-            var palette = [];
-            try {
-                var tmp  = document.createElement('canvas');
-                tmp.width  = panelW;
-                tmp.height = panelH;
-                var tCtx = tmp.getContext('2d');
-                tCtx.drawImage(img, dX, dY, dW, dH);
-                var sw   = Math.max(1, Math.ceil(dW * 0.06));
-                var pxs  = tCtx.getImageData(dX, 0, sw, panelH).data;
-                var step = Math.max(4, Math.floor(pxs.length / 4 / 250)) * 4;
-                for (var i = 0; i < pxs.length; i += step) {
-                    var r = pxs[i], g = pxs[i+1], b = pxs[i+2], a = pxs[i+3];
-                    if (a < 80 || r + g + b < 45) continue;
-                    palette.push([r, g, b]);
-                }
-            } catch (e) { /* cross-origin fallback */ }
-            if (!palette.length) palette = [[160,130,100],[100,140,160],[120,100,140]];
+            /* Render image to temp canvas for pixel sampling */
+            var tmp  = document.createElement('canvas');
+            tmp.width  = panelW;
+            tmp.height = panelH;
+            var tCtx = tmp.getContext('2d');
+            tCtx.drawImage(img, dX, dY, dW, dH);
+            var imgData;
+            try { imgData = tCtx.getImageData(0, 0, panelW, panelH).data; }
+            catch (e) { return; }
 
-            /* Draw particles — zone: left edge of panel → 15% into image */
-            var zoneEnd = dX + dW * 0.15;
+            function sampleAt(x, y) {
+                var ix = Math.min(Math.max(Math.round(x), 0), panelW - 1);
+                var iy = Math.min(Math.max(Math.round(y), 0), panelH - 1);
+                var i  = (iy * panelW + ix) * 4;
+                return [imgData[i], imgData[i+1], imgData[i+2], imgData[i+3]];
+            }
+
+            /* Zone: 2/3 of panel width → left edge of image */
+            var sz        = 6;               /* block size px                  */
+            var gap       = 1;               /* gap between blocks              */
+            var zoneStart = panelW * 0.667;
+            var zoneEnd   = dX;              /* image left edge                 */
+            /* Sample column: 1.5% inside image left edge for accurate colors  */
+            var sampleCol = dX + Math.max(2, Math.round(dW * 0.015));
+            if (zoneEnd <= zoneStart) return;
+
             ctx.save();
-            for (var p = 0; p < N; p++) {
-                var t   = Math.pow(Math.random(), 2.2);          /* bias toward image edge */
-                var x   = t * zoneEnd;
-                var y   = Math.random() * panelH;
-                var op  = t < 0.15 ? t * 1.8 : 0.25 + t * 0.68;
-                var sz  = 0.7 + t * 3.0 + Math.random() * 0.6;
-                var col = palette[Math.floor(Math.random() * palette.length)];
-                ctx.globalAlpha = Math.min(op, 0.92);
-                ctx.fillStyle = 'rgb(' +
-                    Math.round(Math.max(0, Math.min(255, col[0] + (Math.random()-.5)*30))) + ',' +
-                    Math.round(Math.max(0, Math.min(255, col[1] + (Math.random()-.5)*30))) + ',' +
-                    Math.round(Math.max(0, Math.min(255, col[2] + (Math.random()-.5)*30))) + ')';
-                ctx.beginPath();
-                ctx.arc(x, y, sz, 0, 6.2832);
-                ctx.fill();
+            for (var bx = zoneStart; bx < zoneEnd + sz; bx += sz) {
+                var t    = Math.min((bx - zoneStart) / (zoneEnd - zoneStart), 1.0);
+                /* sparse at left (~0%), ~90% filled at image edge */
+                var prob = Math.pow(t, 1.1) * 0.90;
+
+                for (var by = 0; by < panelH; by += sz) {
+                    if (Math.random() > prob) continue;
+
+                    var p = sampleAt(sampleCol, by + sz * 0.5);
+                    if (p[3] < 50) continue;  /* skip transparent pixels */
+
+                    ctx.globalAlpha = 0.10 + t * 0.85;
+                    ctx.fillStyle   = 'rgb(' + p[0] + ',' + p[1] + ',' + p[2] + ')';
+                    ctx.fillRect(bx, by, sz - gap, sz - gap);
+                }
             }
             ctx.restore();
         }
 
-        function setupPanel(idx) {
+        function setup(idx) {
             var panel = document.querySelector('.tl-panel[data-index="' + idx + '"]');
             if (!panel) return;
             var img = panel.querySelector('.tl-bg img');
@@ -663,14 +667,9 @@
 
             function tryDraw() { drawParticles(panel); }
 
-            /* Draw immediately if image is already loaded */
-            if (img.complete && img.naturalWidth > 0) {
-                tryDraw();
-            } else {
-                img.addEventListener('load', tryDraw);
-            }
+            if (img.complete && img.naturalWidth > 0) { tryDraw(); }
+            else { img.addEventListener('load', tryDraw); }
 
-            /* Also draw when panel becomes active (handles lazy-loaded images) */
             new MutationObserver(function (muts) {
                 muts.forEach(function (m) {
                     if (m.attributeName === 'class' && panel.classList.contains('active')) tryDraw();
@@ -678,7 +677,7 @@
             }).observe(panel, { attributes: true });
         }
 
-        document.addEventListener('DOMContentLoaded', function () { TARGET.forEach(setupPanel); });
+        document.addEventListener('DOMContentLoaded', function () { TARGET.forEach(setup); });
     })();
     </script>
 
