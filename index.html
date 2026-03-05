@@ -557,9 +557,12 @@
                 if (!isRevealed) {
                     var content = btn.closest('.tl-content');
                     if (content) {
-                        setTimeout(function() {
-                            content.scrollTo({ top: content.scrollHeight, behavior: 'smooth' });
-                        }, 50);
+                        fact.addEventListener('transitionend', function onEnd(ev) {
+                            if (ev.propertyName === 'max-height') {
+                                content.scrollTo({ top: content.scrollHeight, behavior: 'smooth' });
+                                fact.removeEventListener('transitionend', onEnd);
+                            }
+                        });
                     }
                 }
 
