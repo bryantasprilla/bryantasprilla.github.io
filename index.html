@@ -640,8 +640,12 @@
             if (zoneEnd <= zoneStart) return;
 
             ctx.save();
+            /* Hard clip: nothing can be drawn in the image area (x >= dX) */
+            ctx.beginPath();
+            ctx.rect(0, 0, dX, panelH);
+            ctx.clip();
             /* Draw blocks at high opacity — the overlay above us handles all darkening */
-            for (var bx = zoneStart; bx < zoneEnd + sz; bx += sz) {
+            for (var bx = zoneStart; bx < zoneEnd; bx += sz) {
                 var t    = Math.min((bx - zoneStart) / (zoneEnd - zoneStart), 1.0);
                 /* sparse at left (~0%), ~90% filled at image edge */
                 var prob = Math.pow(t, 1.1) * 0.90;
