@@ -372,6 +372,12 @@ section { scroll-margin-top: var(--navbar-h); }
     /* Revert to cover on mobile — portrait-shaped panels suit it well */
     .tl-bg img { object-fit: cover; object-position: 50% 0%; }
 
+    /* Override contain→cover for portrait panels (higher specificity needed) */
+    .tl-panel[data-index="1"] .tl-bg img,
+    .tl-panel[data-index="2"] .tl-bg img,
+    .tl-panel[data-index="5"] .tl-bg img,
+    .tl-panel[data-index="6"] .tl-bg img { object-fit: cover; object-position: 50% 0%; }
+
     /* Per-panel mobile overrides */
     .tl-panel[data-index="0"] .tl-bg img { object-position: 50% 65%; }   /* NYC street, show lower */
     .tl-panel[data-index="2"] .tl-bg img { object-position: 55% 0%; }    /* Adelphi selfie, face slightly right */
