@@ -83,6 +83,15 @@ section { scroll-margin-top: var(--navbar-h); }
     .hero-section .col-lg-8 > .d-flex {
         margin-top: auto;
         margin-bottom: 0.75rem;
+        /* Stack buttons vertically so longer translated text never wraps mid-button */
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 0.6rem !important;
+    }
+    /* Uniform button width so both buttons look intentionally matched */
+    .hero-section .col-lg-8 > .d-flex .btn {
+        width: 100%;
+        max-width: 260px;
     }
 }
 
