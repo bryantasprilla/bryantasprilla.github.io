@@ -64,9 +64,19 @@ section { scroll-margin-top: var(--navbar-h); }
 
 @media (max-width: 768px) {
     .hero-section { background-attachment: scroll; }
-    /* Align content to top so text sits above the face in the background */
-    .hero-section .container { padding-top: 0; }
-    .hero-section .row { align-items: flex-start !important; padding-top: 5vh; }
+    /* Frame layout: name/subtitle at top, buttons at bottom, face visible in between */
+    .hero-section .row { align-items: stretch !important; }
+    .hero-section .col-lg-8 {
+        display: flex !important;
+        flex-direction: column;
+        padding-top: 6vh;
+        padding-bottom: 5vh;
+    }
+    /* Push button group (and social links after it) to the bottom */
+    .hero-section .col-lg-8 > .d-flex {
+        margin-top: auto;
+        margin-bottom: 1rem;
+    }
 }
 
 
