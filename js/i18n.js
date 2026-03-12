@@ -10,8 +10,18 @@
   /* ---------- helpers ---------- */
 
   function detectLang() {
+    /* 1. URL parameter — highest priority, enables shareable links like ?lang=es */
+    try {
+      var param = new URLSearchParams(window.location.search).get('lang');
+      if (param && SUPPORTED.indexOf(param.toLowerCase()) !== -1) {
+        localStorage.setItem(STORAGE_KEY, param.toLowerCase());
+        return param.toLowerCase();
+      }
+    } catch (e) {}
+    /* 2. Stored preference */
     var stored = localStorage.getItem(STORAGE_KEY);
     if (stored && SUPPORTED.indexOf(stored) !== -1) return stored;
+    /* 3. Browser language */
     var browser = (navigator.language || navigator.userLanguage || '').slice(0, 2).toLowerCase();
     return (SUPPORTED.indexOf(browser) !== -1) ? browser : DEFAULT;
   }
@@ -54,6 +64,17 @@
 
     /* store choice */
     localStorage.setItem(STORAGE_KEY, lang);
+
+    /* update URL bar so the current language is always shareable */
+    try {
+      var url = new URL(window.location.href);
+      if (lang === DEFAULT) {
+        url.searchParams.delete('lang');
+      } else {
+        url.searchParams.set('lang', lang);
+      }
+      history.replaceState(null, '', url.toString());
+    } catch (e) {}
   }
 
   /* ---------- wire up dropdown buttons ---------- */
