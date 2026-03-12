@@ -94,12 +94,25 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <li class="nav-item"><a class="nav-link" href="#home"       data-i18n="navHome">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about"      data-i18n="navAbout">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#experience" data-i18n="navExperience">Experience</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#skills"     data-i18n="navSkills">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact"    data-i18n="navContact">Contact</a></li>
+                    <!-- Language switcher -->
+                    <li class="nav-item dropdown ms-lg-2">
+                        <button class="btn nav-link lang-toggle px-2" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span id="langCurrent">EN</span>
+                            <svg class="lang-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end lang-menu">
+                            <li><button class="dropdown-item lang-option active" data-lang="en">&#127482;&#127480; English</button></li>
+                            <li><button class="dropdown-item lang-option" data-lang="es">&#127466;&#127480; Espa&ntilde;ol</button></li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -112,11 +125,11 @@
                 <div class="col-lg-8 mx-auto text-center">
                     <img src="images/profile.jpg" alt="Bryant Asprilla" class="profile-img mb-4">
                     <h1 class="display-3 fw-bold mb-3">Bryant Asprilla</h1>
-                    <p class="lead mb-4">Global Product Leader | Turning AI Innovation into Trusted Enterprise SaaS</p>
+                    <p class="lead mb-4" data-i18n="heroSubtitle">Global Product Leader | Turning AI Innovation into Trusted Enterprise SaaS</p>
                     <div class="d-flex justify-content-center gap-3 mb-4">
-                        <a href="#contact" class="btn btn-primary btn-lg">Get In Touch</a>
+                        <a href="#contact" class="btn btn-primary btn-lg" data-i18n="heroGetInTouch">Get In Touch</a>
                         <a href="files/Asprilla_Bryant_Resume.pdf" class="btn btn-outline-secondary btn-lg" download>
-                            <i class="bi bi-download me-2"></i>Download Resume
+                            <i class="bi bi-download me-2"></i><span data-i18n="heroDownloadCV">Download Resume</span>
                         </a>
                     </div>
                     <div class="social-links">
@@ -133,9 +146,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 mx-auto">
-                    <h2 class="section-title text-center mb-5">About Me</h2>
-                    <p class="lead text-center mb-4">I build AI-powered SaaS products that make complex industries work better.</p>
-                    <p class="text-muted">Over the past nine years, I’ve led global product teams across healthcare, financial services, and compliance, translating regulatory and operational complexity into scalable, revenue-generating software. I was responsible for introducing and deploying LLM-powered capabilities into production, turning emerging AI into trusted features that customers quickly adopted. My experience across the U.S., Middle East, and Europe has shaped how I approach product leadership with both commercial focus and global awareness.</p>
+                    <h2 class="section-title text-center mb-5" data-i18n="aboutTitle">About Me</h2>
+                    <p class="lead text-center mb-4" data-i18n="aboutLead">I build AI-powered SaaS products that make complex industries work better.</p>
+                    <p class="text-muted" data-i18n="aboutBody">Over the past nine years, I&rsquo;ve led global product teams across healthcare, financial services, and compliance, translating regulatory and operational complexity into scalable, revenue-generating software. I was responsible for introducing and deploying LLM-powered capabilities into production, turning emerging AI into trusted features that customers quickly adopted. My experience across the U.S., Middle East, and Europe has shaped how I approach product leadership with both commercial focus and global awareness.</p>
                 </div>
             </div>
         </div>
@@ -146,38 +159,38 @@
 
         <!-- Left sidebar nav -->
         <nav class="tl-sidebar" id="tlSidebar">
-            <div class="tl-sidebar-heading">My Journey</div>
+            <div class="tl-sidebar-heading" data-i18n="sidebarHeading">My Journey</div>
             <div class="tl-nav-item active" data-index="0">
-                <div class="tl-nav-title">Growing Up</div>
-                <div class="tl-nav-meta">&#127482;&#127480; USA &middot; 1995</div>
+                <div class="tl-nav-title" data-i18n="nav0Title">Growing Up</div>
+                <div class="tl-nav-meta"  data-i18n="nav0Meta">&#127482;&#127480; USA &middot; 1995</div>
             </div>
             <div class="tl-nav-item" data-index="1">
-                <div class="tl-nav-title">Joining the Army</div>
-                <div class="tl-nav-meta">&#127482;&#127480; USA &middot; 2012</div>
+                <div class="tl-nav-title" data-i18n="nav1Title">Joining the Army</div>
+                <div class="tl-nav-meta"  data-i18n="nav1Meta">&#127482;&#127480; USA &middot; 2012</div>
             </div>
             <div class="tl-nav-item" data-index="2">
-                <div class="tl-nav-title">Education</div>
-                <div class="tl-nav-meta">&#127482;&#127480; USA &middot; 2013</div>
+                <div class="tl-nav-title" data-i18n="nav2Title">Education</div>
+                <div class="tl-nav-meta"  data-i18n="nav2Meta">&#127482;&#127480; USA &middot; 2013</div>
             </div>
             <div class="tl-nav-item" data-index="3">
-                <div class="tl-nav-title">Epic Systems</div>
-                <div class="tl-nav-meta">&#127482;&#127480; USA &middot; 2017</div>
+                <div class="tl-nav-title" data-i18n="nav3Title">Epic Systems</div>
+                <div class="tl-nav-meta"  data-i18n="nav3Meta">&#127482;&#127480; USA &middot; 2017</div>
             </div>
             <div class="tl-nav-item" data-index="4">
-                <div class="tl-nav-title">Moving to Dubai</div>
-                <div class="tl-nav-meta">&#127462;&#127466; UAE &middot; 2019</div>
+                <div class="tl-nav-title" data-i18n="nav4Title">Moving to Dubai</div>
+                <div class="tl-nav-meta"  data-i18n="nav4Meta">&#127462;&#127466; UAE &middot; 2019</div>
             </div>
             <div class="tl-nav-item" data-index="5">
-                <div class="tl-nav-title">Epic Dubai</div>
-                <div class="tl-nav-meta">&#127462;&#127466; UAE &middot; 2019</div>
+                <div class="tl-nav-title" data-i18n="nav5Title">Epic Dubai</div>
+                <div class="tl-nav-meta"  data-i18n="nav5Meta">&#127462;&#127466; UAE &middot; 2019</div>
             </div>
             <div class="tl-nav-item" data-index="6">
-                <div class="tl-nav-title">Moving to Bulgaria</div>
-                <div class="tl-nav-meta">&#127463;&#127468; Bulgaria &middot; 2022</div>
+                <div class="tl-nav-title" data-i18n="nav6Title">Moving to Bulgaria</div>
+                <div class="tl-nav-meta"  data-i18n="nav6Meta">&#127463;&#127468; Bulgaria &middot; 2022</div>
             </div>
             <div class="tl-nav-item" data-index="7">
-                <div class="tl-nav-title">AML RightSource</div>
-                <div class="tl-nav-meta">&#127463;&#127468; Bulgaria &middot; 2022</div>
+                <div class="tl-nav-title" data-i18n="nav7Title">AML RightSource</div>
+                <div class="tl-nav-meta"  data-i18n="nav7Meta">&#127463;&#127468; Bulgaria &middot; 2022</div>
             </div>
         </nav>
 
@@ -190,12 +203,12 @@
                     <div class="tl-overlay"></div>
                 </div>
                 <div class="tl-content">
-                    <div class="tl-location"><span>&#127482;&#127480;</span> Queens, New York</div>
-                    <h2 class="tl-title">Growing Up</h2>
-                    <div class="tl-date">1995</div>
-                    <p class="tl-text">I was born and raised in Queens, New York, to two hardworking Colombian immigrants. Growing up in one of the most culturally diverse places in the world shaped my curiosity early. Being surrounded by different languages, traditions, and perspectives developed my love for learning about people and cultures.</p>
-                    <p class="tl-text">I got my first job at 15 at AMC Theaters in Kips Bay, Manhattan. Earning my own paycheck at that age gave me a sense of responsibility and independence that stayed with me. It was the first time I understood the connection between effort and reward, and it cemented my drive for success.</p>
-                    <button class="tl-fun-trigger" aria-label="Reveal fun fact">
+                    <div class="tl-location"><span>&#127482;&#127480;</span> <span data-i18n="p0Location">Queens, New York</span></div>
+                    <h2 class="tl-title" data-i18n="p0Title">Growing Up</h2>
+                    <div class="tl-date" data-i18n="p0Date">1995</div>
+                    <p class="tl-text" data-i18n="p0Body1">I was born and raised in Queens, New York, to two hardworking Colombian immigrants. Growing up in one of the most culturally diverse places in the world shaped my curiosity early. Being surrounded by different languages, traditions, and perspectives developed my love for learning about people and cultures.</p>
+                    <p class="tl-text" data-i18n="p0Body2">I got my first job at 15 at AMC Theaters in Kips Bay, Manhattan. Earning my own paycheck at that age gave me a sense of responsibility and independence that stayed with me. It was the first time I understood the connection between effort and reward, and it cemented my drive for success.</p>
+                    <button class="tl-fun-trigger" data-i18n-aria="funFactAriaReveal" aria-label="Reveal fun fact">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M9 18h6"></path>
                             <path d="M10 22h4"></path>
@@ -203,7 +216,7 @@
                         </svg>
                     </button>
                     <div class="tl-fun-fact">
-                        <p class="tl-text"><strong>Fun Fact:</strong> I once sold concessions to Bruno Mars. He tried to pay with a $100 bill for $9 worth of popcorn, and I had to turn him down. Policy is policy.</p>
+                        <p class="tl-text" data-i18n-html="p0FunFact"><strong>Fun Fact:</strong> I once sold concessions to Bruno Mars. He tried to pay with a $100 bill for $9 worth of popcorn, and I had to turn him down. Policy is policy.</p>
                     </div>
                 </div>
             </div>
@@ -215,12 +228,12 @@
                     <div class="tl-overlay"></div>
                 </div>
                 <div class="tl-content">
-                    <div class="tl-location"><span>&#127482;&#127480;</span> United States</div>
-                    <h2 class="tl-title">Joining the Army</h2>
-                    <div class="tl-date">2012</div>
-                    <p class="tl-text">When I turned 17, I enlisted in the United States Army Reserves before starting university. I trained as a Chemical, Biological, Radiological, and Nuclear Specialist (74D), graduating as the Distinguished Honor Graduate of my class and earning my first medal in the process.</p>
-                    <p class="tl-text">The Army taught me discipline, resilience, and how to lead under pressure. It forced me to make decisions with incomplete information and stay calm when the stakes were high. Those lessons have shaped how I lead teams and navigate complexity in my professional life.</p>
-                    <button class="tl-fun-trigger" aria-label="Reveal fun fact">
+                    <div class="tl-location"><span>&#127482;&#127480;</span> <span data-i18n="p1Location">United States</span></div>
+                    <h2 class="tl-title" data-i18n="p1Title">Joining the Army</h2>
+                    <div class="tl-date" data-i18n="p1Date">2012</div>
+                    <p class="tl-text" data-i18n="p1Body1">When I turned 17, I enlisted in the United States Army Reserves before starting university. I trained as a Chemical, Biological, Radiological, and Nuclear Specialist (74D), graduating as the Distinguished Honor Graduate of my class and earning my first medal in the process.</p>
+                    <p class="tl-text" data-i18n="p1Body2">The Army taught me discipline, resilience, and how to lead under pressure. It forced me to make decisions with incomplete information and stay calm when the stakes were high. Those lessons have shaped how I lead teams and navigate complexity in my professional life.</p>
+                    <button class="tl-fun-trigger" data-i18n-aria="funFactAriaReveal" aria-label="Reveal fun fact">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M9 18h6"></path>
                             <path d="M10 22h4"></path>
@@ -228,7 +241,7 @@
                         </svg>
                     </button>
                     <div class="tl-fun-fact">
-                        <p class="tl-text"><strong>Fun Fact:</strong> Our capstone project involved testing and decontaminating real Sarin nerve agent. It was a powerful reminder that confidence comes from preparation.</p>
+                        <p class="tl-text" data-i18n-html="p1FunFact"><strong>Fun Fact:</strong> Our capstone project involved testing and decontaminating real Sarin nerve agent. It was a powerful reminder that confidence comes from preparation.</p>
                     </div>
                 </div>
             </div>
@@ -240,12 +253,12 @@
                     <div class="tl-overlay"></div>
                 </div>
                 <div class="tl-content">
-                    <div class="tl-location"><span>&#127482;&#127480;</span> Long Island, New York</div>
-                    <h2 class="tl-title">Education</h2>
-                    <div class="tl-date">2013</div>
-                    <p class="tl-text">I studied at Adelphi University in Long Island, graduating Magna Cum Laude from the Honors College with a BBA in Accounting. While I did not pursue accounting in the traditional sense, the financial rigor and analytical discipline shaped how I approach product strategy and business decisions today.</p>
-                    <p class="tl-text">Serving as President of the International Student Society deepened my appreciation for working across cultures and perspectives. It reinforced something I already felt growing up in Queens: diversity of thought makes everything better.</p>
-                    <button class="tl-fun-trigger" aria-label="Reveal fun fact">
+                    <div class="tl-location"><span>&#127482;&#127480;</span> <span data-i18n="p2Location">Long Island, New York</span></div>
+                    <h2 class="tl-title" data-i18n="p2Title">Education</h2>
+                    <div class="tl-date" data-i18n="p2Date">2013</div>
+                    <p class="tl-text" data-i18n="p2Body1">I studied at Adelphi University in Long Island, graduating Magna Cum Laude from the Honors College with a BBA in Accounting. While I did not pursue accounting in the traditional sense, the financial rigor and analytical discipline shaped how I approach product strategy and business decisions today.</p>
+                    <p class="tl-text" data-i18n="p2Body2">Serving as President of the International Student Society deepened my appreciation for working across cultures and perspectives. It reinforced something I already felt growing up in Queens: diversity of thought makes everything better.</p>
+                    <button class="tl-fun-trigger" data-i18n-aria="funFactAriaReveal" aria-label="Reveal fun fact">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M9 18h6"></path>
                             <path d="M10 22h4"></path>
@@ -253,7 +266,7 @@
                         </svg>
                     </button>
                     <div class="tl-fun-fact">
-                        <p class="tl-text"><strong>Fun Fact:</strong> This is where I met my wife. Also, Flavor Flav is an alumnus, which still surprises people.</p>
+                        <p class="tl-text" data-i18n-html="p2FunFact"><strong>Fun Fact:</strong> This is where I met my wife. Also, Flavor Flav is an alumnus, which still surprises people.</p>
                     </div>
                 </div>
             </div>
@@ -264,12 +277,12 @@
                     <div class="tl-overlay"></div>
                 </div>
                 <div class="tl-content">
-                    <div class="tl-location"><span>&#127482;&#127480;</span> Verona, Wisconsin</div>
-                    <h2 class="tl-title">Epic Systems</h2>
-                    <div class="tl-date">2017</div>
-                    <p class="tl-text">My first role after university was at Epic Systems in Wisconsin, the largest healthcare software provider in the United States. Surrounded by some of the brightest and most ambitious minds I had ever worked with, I learned how to think systematically, solve complex operational problems, and build software that supports mission-critical workflows.</p>
-                    <p class="tl-text">Epic gave me my foundation in product thinking, stakeholder management, and high-stakes execution. I worked directly with hospital leadership and IT teams to solve financial and operational challenges across billing and revenue cycle systems.</p>
-                    <button class="tl-fun-trigger" aria-label="Reveal fun fact">
+                    <div class="tl-location"><span>&#127482;&#127480;</span> <span data-i18n="p3Location">Verona, Wisconsin</span></div>
+                    <h2 class="tl-title" data-i18n="p3Title">Epic Systems</h2>
+                    <div class="tl-date" data-i18n="p3Date">2017</div>
+                    <p class="tl-text" data-i18n="p3Body1">My first role after university was at Epic Systems in Wisconsin, the largest healthcare software provider in the United States. Surrounded by some of the brightest and most ambitious minds I had ever worked with, I learned how to think systematically, solve complex operational problems, and build software that supports mission-critical workflows.</p>
+                    <p class="tl-text" data-i18n="p3Body2">Epic gave me my foundation in product thinking, stakeholder management, and high-stakes execution. I worked directly with hospital leadership and IT teams to solve financial and operational challenges across billing and revenue cycle systems.</p>
+                    <button class="tl-fun-trigger" data-i18n-aria="funFactAriaReveal" aria-label="Reveal fun fact">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M9 18h6"></path>
                             <path d="M10 22h4"></path>
@@ -277,7 +290,7 @@
                         </svg>
                     </button>
                     <div class="tl-fun-fact">
-                        <p class="tl-text"><strong>Fun Fact:</strong> While living in Madison, I took my wife to see Metallica. James Hetfield threw his guitar pick into the crowd and I caught it. I still have it.</p>
+                        <p class="tl-text" data-i18n-html="p3FunFact"><strong>Fun Fact:</strong> While living in Madison, I took my wife to see Metallica. James Hetfield threw his guitar pick into the crowd and I caught it. I still have it.</p>
                     </div>
                 </div>
             </div>
@@ -288,12 +301,12 @@
                     <div class="tl-overlay"></div>
                 </div>
                 <div class="tl-content">
-                    <div class="tl-location"><span>&#127462;&#127466;</span> Dubai, UAE</div>
-                    <h2 class="tl-title">Moving to Dubai</h2>
-                    <div class="tl-date">2019</div>
-                    <p class="tl-text">In recognition of my leadership and technical performance, I was asked to relocate to Dubai to lead and grow Epic&rsquo;s billing presence across the Middle East. What began as an opportunity quickly became a responsibility to expand our footprint in the region, strengthen client relationships, and ensure the unique regulatory and operational needs of Middle Eastern healthcare systems were reflected in our product strategy.</p>
-                    <p class="tl-text">This was my first time living outside the United States, and it reshaped how I think about leadership. I was not just implementing software. I was building trust across cultures, navigating complex insurance systems, and advocating for regional requirements with US-based development teams. From celebrating Diwali with neighbors to hosting Iftar dinners with coworkers, I made it a point to immerse myself fully. Understanding culture deeply made me a stronger leader and a more thoughtful problem solver.</p>
-                    <button class="tl-fun-trigger" aria-label="Reveal fun fact">
+                    <div class="tl-location"><span>&#127462;&#127466;</span> <span data-i18n="p4Location">Dubai, UAE</span></div>
+                    <h2 class="tl-title" data-i18n="p4Title">Moving to Dubai</h2>
+                    <div class="tl-date" data-i18n="p4Date">2019</div>
+                    <p class="tl-text" data-i18n="p4Body1">In recognition of my leadership and technical performance, I was asked to relocate to Dubai to lead and grow Epic&rsquo;s billing presence across the Middle East. What began as an opportunity quickly became a responsibility to expand our footprint in the region, strengthen client relationships, and ensure the unique regulatory and operational needs of Middle Eastern healthcare systems were reflected in our product strategy.</p>
+                    <p class="tl-text" data-i18n="p4Body2">This was my first time living outside the United States, and it reshaped how I think about leadership. I was not just implementing software. I was building trust across cultures, navigating complex insurance systems, and advocating for regional requirements with US-based development teams. From celebrating Diwali with neighbors to hosting Iftar dinners with coworkers, I made it a point to immerse myself fully. Understanding culture deeply made me a stronger leader and a more thoughtful problem solver.</p>
+                    <button class="tl-fun-trigger" data-i18n-aria="funFactAriaReveal" aria-label="Reveal fun fact">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M9 18h6"></path>
                             <path d="M10 22h4"></path>
@@ -301,7 +314,7 @@
                         </svg>
                     </button>
                     <div class="tl-fun-fact">
-                        <p class="tl-text"><strong>Fun Fact:</strong> I discovered I&rsquo;m allergic to camels. Irony at its finest.</p>
+                        <p class="tl-text" data-i18n-html="p4FunFact"><strong>Fun Fact:</strong> I discovered I&rsquo;m allergic to camels. Irony at its finest.</p>
                     </div>
                 </div>
             </div>
@@ -313,12 +326,12 @@
                     <div class="tl-overlay"></div>
                 </div>
                 <div class="tl-content">
-                    <div class="tl-location"><span>&#127462;&#127466;</span> Dubai, UAE</div>
-                    <h2 class="tl-title">Epic Dubai</h2>
-                    <div class="tl-date">2019</div>
-                    <p class="tl-text">Leading billing initiatives across the Middle East was the first true test of my professional maturity. Working with healthcare systems across multiple countries required me to operate with both technical depth and cultural awareness. I translated ambiguous insurance regulations, aligned stakeholders across time zones, and designed solutions that worked in real hospital environments.</p>
-                    <p class="tl-text">My proudest achievement was identifying a way to resolve a client&rsquo;s largest and most persistent set of insurance denials without requiring new development. By leveraging existing tools creatively and rethinking the workflow, we unlocked 2.1 million dirhams in additional revenue. That moment reinforced something that has stayed with me: the best solutions are not always new features, but new ways of understanding the system.</p>
-                    <button class="tl-fun-trigger" aria-label="Reveal fun fact">
+                    <div class="tl-location"><span>&#127462;&#127466;</span> <span data-i18n="p5Location">Dubai, UAE</span></div>
+                    <h2 class="tl-title" data-i18n="p5Title">Epic Dubai</h2>
+                    <div class="tl-date" data-i18n="p5Date">2019</div>
+                    <p class="tl-text" data-i18n="p5Body1">Leading billing initiatives across the Middle East was the first true test of my professional maturity. Working with healthcare systems across multiple countries required me to operate with both technical depth and cultural awareness. I translated ambiguous insurance regulations, aligned stakeholders across time zones, and designed solutions that worked in real hospital environments.</p>
+                    <p class="tl-text" data-i18n="p5Body2">My proudest achievement was identifying a way to resolve a client&rsquo;s largest and most persistent set of insurance denials without requiring new development. By leveraging existing tools creatively and rethinking the workflow, we unlocked 2.1 million dirhams in additional revenue. That moment reinforced something that has stayed with me: the best solutions are not always new features, but new ways of understanding the system.</p>
+                    <button class="tl-fun-trigger" data-i18n-aria="funFactAriaReveal" aria-label="Reveal fun fact">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M9 18h6"></path>
                             <path d="M10 22h4"></path>
@@ -326,7 +339,7 @@
                         </svg>
                     </button>
                     <div class="tl-fun-fact">
-                        <p class="tl-text"><strong>Fun Fact:</strong> My daughter was born in Dubai in 2020, just two weeks before the COVID shutdown. Being able to stay home with her during those early months was an unexpected blessing.</p>
+                        <p class="tl-text" data-i18n-html="p5FunFact"><strong>Fun Fact:</strong> My daughter was born in Dubai in 2020, just two weeks before the COVID shutdown. Being able to stay home with her during those early months was an unexpected blessing.</p>
                     </div>
                 </div>
             </div>
@@ -338,12 +351,12 @@
                     <div class="tl-overlay"></div>
                 </div>
                 <div class="tl-content">
-                    <div class="tl-location"><span>&#127463;&#127468;</span> Varna, Bulgaria</div>
-                    <h2 class="tl-title">Moving to Bulgaria</h2>
-                    <div class="tl-date">2022</div>
-                    <p class="tl-text">In 2022, my family and I moved to the northern coast of Bulgaria and settled in my wife&rsquo;s hometown. Watching my daughter grow up close to extended family is a daily reminder of why I work hard.</p>
-                    <p class="tl-text">Immersing myself in a new language and culture without defaulting to English stretched me in new ways. It reinforced something I have learned repeatedly throughout my life: growth happens when you are willing to be uncomfortable.</p>
-                    <button class="tl-fun-trigger" aria-label="Reveal fun fact">
+                    <div class="tl-location"><span>&#127463;&#127468;</span> <span data-i18n="p6Location">Varna, Bulgaria</span></div>
+                    <h2 class="tl-title" data-i18n="p6Title">Moving to Bulgaria</h2>
+                    <div class="tl-date" data-i18n="p6Date">2022</div>
+                    <p class="tl-text" data-i18n="p6Body1">In 2022, my family and I moved to the northern coast of Bulgaria and settled in my wife&rsquo;s hometown. Watching my daughter grow up close to extended family is a daily reminder of why I work hard.</p>
+                    <p class="tl-text" data-i18n="p6Body2">Immersing myself in a new language and culture without defaulting to English stretched me in new ways. It reinforced something I have learned repeatedly throughout my life: growth happens when you are willing to be uncomfortable.</p>
+                    <button class="tl-fun-trigger" data-i18n-aria="funFactAriaReveal" aria-label="Reveal fun fact">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M9 18h6"></path>
                             <path d="M10 22h4"></path>
@@ -351,7 +364,7 @@
                         </svg>
                     </button>
                     <div class="tl-fun-fact">
-                        <p class="tl-text"><strong>Fun Fact:</strong> My wife and I got married in Bulgaria in 2017, less than 30 minutes from where we live now. We did not know then that life would bring us back.</p>
+                        <p class="tl-text" data-i18n-html="p6FunFact"><strong>Fun Fact:</strong> My wife and I got married in Bulgaria in 2017, less than 30 minutes from where we live now. We did not know then that life would bring us back.</p>
                     </div>
                 </div>
             </div>
@@ -362,13 +375,13 @@
                     <div class="tl-overlay"></div>
                 </div>
                 <div class="tl-content">
-                    <div class="tl-location"><span>&#127463;&#127468;</span> Varna, Bulgaria</div>
-                    <h2 class="tl-title">AML RightSource</h2>
-                    <div class="tl-date">2022 &ndash; Present</div>
-                    <p class="tl-text">Bulgaria brought me into the world of compliance and risk, industries where mistakes carry real consequences. At <a href="https://www.amlrightsource.com" target="_blank" rel="noopener">AML RightSource</a>, I did not just experiment with AI. I was the first person in the organization to put LLM-powered capabilities into production for our customers.</p>
-                    <p class="tl-text">At a time when many institutions were skeptical of AI, I championed its responsible implementation and shaped how it would integrate into real investigative workflows. I worked closely with engineering to embed LLMs into core products such as media monitoring and case management, focusing on explainability, measurable efficiency gains, and user trust. Within six months, these capabilities achieved universal adoption across our existing customer base.</p>
-                    <p class="tl-text">Beyond AI, I led the organization&rsquo;s first strategic product roadmap and managed a portfolio responsible for $6M in ARR. Over time, I rose to Director of Product, overseeing four products and partnering closely with sales, procurement, customer success, and marketing. This chapter reinforced a principle I strongly believe in: innovation only matters if customers trust it, adopt it, and see tangible business impact.</p>
-                    <button class="tl-fun-trigger" aria-label="Reveal fun fact">
+                    <div class="tl-location"><span>&#127463;&#127468;</span> <span data-i18n="p7Location">Varna, Bulgaria</span></div>
+                    <h2 class="tl-title" data-i18n="p7Title">AML RightSource</h2>
+                    <div class="tl-date" data-i18n="p7Date">2022 &ndash; Present</div>
+                    <p class="tl-text" data-i18n-html="p7Body1">Bulgaria brought me into the world of compliance and risk, industries where mistakes carry real consequences. At <a href="https://www.amlrightsource.com" target="_blank" rel="noopener">AML RightSource</a>, I did not just experiment with AI. I was the first person in the organization to put LLM-powered capabilities into production for our customers.</p>
+                    <p class="tl-text" data-i18n="p7Body2">At a time when many institutions were skeptical of AI, I championed its responsible implementation and shaped how it would integrate into real investigative workflows. I worked closely with engineering to embed LLMs into core products such as media monitoring and case management, focusing on explainability, measurable efficiency gains, and user trust. Within six months, these capabilities achieved universal adoption across our existing customer base.</p>
+                    <p class="tl-text" data-i18n="p7Body3">Beyond AI, I led the organization&rsquo;s first strategic product roadmap and managed a portfolio responsible for $6M in ARR. Over time, I rose to Director of Product, overseeing four products and partnering closely with sales, procurement, customer success, and marketing. This chapter reinforced a principle I strongly believe in: innovation only matters if customers trust it, adopt it, and see tangible business impact.</p>
+                    <button class="tl-fun-trigger" data-i18n-aria="funFactAriaReveal" aria-label="Reveal fun fact">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M9 18h6"></path>
                             <path d="M10 22h4"></path>
@@ -376,7 +389,7 @@
                         </svg>
                     </button>
                     <div class="tl-fun-fact">
-                        <p class="tl-text"><strong>Fun Fact:</strong> During this time, I also built a house from the ground up. It&rsquo;s one of the most personal and challenging projects I&rsquo;ve faced.</p>
+                        <p class="tl-text" data-i18n-html="p7FunFact"><strong>Fun Fact:</strong> During this time, I also built a house from the ground up. It&rsquo;s one of the most personal and challenging projects I&rsquo;ve faced.</p>
                     </div>
                 </div>
             </div>
@@ -399,57 +412,57 @@
     <!-- SKILLS -->
     <section id="skills" class="py-5 bg-light">
         <div class="container">
-            <h2 class="section-title text-center mb-5">Core Competencies</h2>
+            <h2 class="section-title text-center mb-5" data-i18n="skillsTitle">Core Competencies</h2>
             <div class="row"><div class="col-lg-10 mx-auto"><div class="row g-4">
                 <div class="col-md-6"><div class="card h-100"><div class="card-body">
-                    <h5 class="card-title mb-3"><i class="bi bi-shield-check text-primary me-2"></i>GRC &amp; Compliance</h5>
+                    <h5 class="card-title mb-3"><i class="bi bi-shield-check text-primary me-2"></i><span data-i18n="skillCard1Title">GRC &amp; Compliance</span></h5>
                     <div class="d-flex flex-wrap gap-2">
                         <span class="badge bg-primary">KYC/CDD</span><span class="badge bg-primary">AML</span><span class="badge bg-primary">Sanctions Screening</span><span class="badge bg-primary">Regulatory Compliance</span><span class="badge bg-primary">Third-Party Risk</span><span class="badge bg-primary">Audit Management</span>
                     </div>
                 </div></div></div>
                 <div class="col-md-6"><div class="card h-100"><div class="card-body">
-                    <h5 class="card-title mb-3"><i class="bi bi-diagram-3 text-primary me-2"></i>Product Management</h5>
+                    <h5 class="card-title mb-3"><i class="bi bi-diagram-3 text-primary me-2"></i><span data-i18n="skillCard2Title">Product Management</span></h5>
                     <div class="d-flex flex-wrap gap-2">
                         <span class="badge bg-primary">Product Strategy</span><span class="badge bg-primary">Roadmap Development</span><span class="badge bg-primary">Go-to-Market</span><span class="badge bg-primary">Agile/Scrum</span><span class="badge bg-primary">KPI Tracking</span><span class="badge bg-primary">RFP Management</span>
                     </div>
                 </div></div></div>
                 <div class="col-md-6"><div class="card h-100"><div class="card-body">
-                    <h5 class="card-title mb-3"><i class="bi bi-cpu text-primary me-2"></i>Technology &amp; AI</h5>
+                    <h5 class="card-title mb-3"><i class="bi bi-cpu text-primary me-2"></i><span data-i18n="skillCard3Title">Technology &amp; AI</span></h5>
                     <div class="d-flex flex-wrap gap-2">
                         <span class="badge bg-primary">AI/LLM Integration</span><span class="badge bg-primary">NLP</span><span class="badge bg-primary">Amazon Redshift</span><span class="badge bg-primary">SaaS Platforms</span><span class="badge bg-primary">BI Reporting</span><span class="badge bg-primary">Case Management</span>
                     </div>
                 </div></div></div>
                 <div class="col-md-6"><div class="card h-100"><div class="card-body">
-                    <h5 class="card-title mb-3"><i class="bi bi-people text-primary me-2"></i>Leadership &amp; Business</h5>
+                    <h5 class="card-title mb-3"><i class="bi bi-people text-primary me-2"></i><span data-i18n="skillCard4Title">Leadership &amp; Business</span></h5>
                     <div class="d-flex flex-wrap gap-2">
                         <span class="badge bg-primary">Cross-functional Leadership</span><span class="badge bg-primary">Vendor Management</span><span class="badge bg-primary">Contract Negotiation</span><span class="badge bg-primary">Stakeholder Alignment</span><span class="badge bg-primary">Revenue Growth</span><span class="badge bg-primary">Client Retention</span>
                     </div>
                 </div></div></div>
                 <div class="col-12"><div class="card"><div class="card-body">
-                    <h5 class="card-title mb-3"><i class="bi bi-mortarboard text-primary me-2"></i>Education &amp; Certifications</h5>
+                    <h5 class="card-title mb-3"><i class="bi bi-mortarboard text-primary me-2"></i><span data-i18n="skillCard5Title">Education &amp; Certifications</span></h5>
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <h6 class="mb-2">Education</h6>
-                            <p class="mb-1"><strong>Adelphi University</strong> &ndash; Garden City, New York</p>
-                            <p class="text-muted small mb-1">B.B.A. in Accounting, GPA 3.78</p>
-                            <p class="text-muted small">Honors College | Dean&rsquo;s List | Presidential Scholarship</p>
+                            <h6 class="mb-2" data-i18n="skillEduHeading">Education</h6>
+                            <p class="mb-1"><strong data-i18n="skillEduInstitution">Adelphi University &ndash; Garden City, New York</strong></p>
+                            <p class="text-muted small mb-1" data-i18n="skillEduDegree">B.B.A. in Accounting, GPA 3.78</p>
+                            <p class="text-muted small" data-i18n="skillEduHonors">Honors College | Dean&rsquo;s List | Presidential Scholarship</p>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <h6 class="mb-2">Certifications</h6>
+                            <h6 class="mb-2" data-i18n="skillCertHeading">Certifications</h6>
                             <ul class="small mb-0">
-                                <li>Product Roadmapping Micro-Certification (PRC)&trade;</li>
-                                <li>Product Analytics Micro-Certification (PAC)&trade;</li>
-                                <li>McKinsey Forward Program</li>
-                                <li>Epic: Resolute Hospital Billing, Hospital Coding, Claims &amp; Remittance</li>
+                                <li data-i18n="skillCert1">Product Roadmapping Micro-Certification (PRC)&trade;</li>
+                                <li data-i18n="skillCert2">Product Analytics Micro-Certification (PAC)&trade;</li>
+                                <li data-i18n="skillCert3">McKinsey Forward Program</li>
+                                <li data-i18n="skillCert4">Epic: Resolute Hospital Billing, Hospital Coding, Claims &amp; Remittance</li>
                             </ul>
                         </div>
                     </div>
                     <div class="mt-3">
-                        <h6 class="mb-2">Languages</h6>
+                        <h6 class="mb-2" data-i18n="skillLangHeading">Languages</h6>
                         <div class="d-flex flex-wrap gap-2">
-                            <span class="badge bg-primary">English &ndash; Fluent</span>
-                            <span class="badge bg-primary">Spanish &ndash; Fluent</span>
-                            <span class="badge bg-primary">Bulgarian &ndash; B1</span>
+                            <span class="badge bg-primary" data-i18n="skillLang1">English &ndash; Fluent</span>
+                            <span class="badge bg-primary" data-i18n="skillLang2">Spanish &ndash; Fluent</span>
+                            <span class="badge bg-primary" data-i18n="skillLang3">Bulgarian &ndash; B1</span>
                         </div>
                     </div>
                 </div></div></div>
@@ -461,28 +474,37 @@
     <section id="contact" class="py-5 bg-dark text-white">
         <div class="container">
             <div class="row"><div class="col-lg-8 mx-auto text-center">
-                <h2 class="section-title mb-4">Get In Touch</h2>
-                <p class="lead mb-4">Interested in discussing product strategy, GRC solutions, or collaboration opportunities? I&rsquo;d love to hear from you.</p>
+                <h2 class="section-title mb-4" data-i18n="contactTitle">Get In Touch</h2>
+                <p class="lead mb-4" data-i18n="contactLead">Interested in discussing product strategy, GRC solutions, or collaboration opportunities? I&rsquo;d love to hear from you.</p>
                 <div class="row g-4 mb-4">
                     <div class="col-md-4"><div class="contact-info"><i class="bi bi-envelope fs-3 mb-2"></i><p class="mb-0"><a href="mailto:Bryantasprilla@yahoo.com" class="text-white text-decoration-none">Bryantasprilla@yahoo.com</a></p></div></div>
-                    <div class="col-md-4"><div class="contact-info"><i class="bi bi-linkedin fs-3 mb-2"></i><p class="mb-0"><a href="https://www.linkedin.com/in/bryantasprilla" target="_blank" class="text-white text-decoration-none">LinkedIn Profile</a></p></div></div>
+                    <div class="col-md-4"><div class="contact-info"><i class="bi bi-linkedin fs-3 mb-2"></i><p class="mb-0"><a href="https://www.linkedin.com/in/bryantasprilla" target="_blank" class="text-white text-decoration-none" data-i18n="linkedinLabel">LinkedIn Profile</a></p></div></div>
                     <div class="col-md-4"><div class="contact-info"><i class="bi bi-telephone fs-3 mb-2"></i><p class="mb-0"><a href="tel:+19176014462" class="text-white text-decoration-none">+1 (917) 601-4462</a></p></div></div>
                 </div>
-                <p class="text-muted small"><i class="bi bi-geo-alt me-2"></i>Currently based in Bulgaria | Open to global opportunities</p>
+                <p class="text-muted small"><i class="bi bi-geo-alt me-2"></i><span data-i18n="contactLocation">Currently based in Bulgaria | Open to global opportunities</span></p>
             </div></div>
         </div>
     </section>
 
     <!-- FOOTER -->
     <footer class="py-4 bg-black text-white text-center">
-        <div class="container"><p class="mb-0">&copy; 2025 Bryant Asprilla. All rights reserved.</p></div>
+        <div class="container"><p class="mb-0">&copy; <span id="footerYear">2025</span> Bryant Asprilla. <span data-i18n="footerRights">All rights reserved.</span></p></div>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/translations.js"></script>
+    <script src="js/i18n.js"></script>
     <script>
     /* Always return to top on load/refresh */
     if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
     window.scrollTo(0, 0);
+
+    /* Footer year */
+    (function () {
+        var el = document.getElementById('footerYear');
+        if (el) el.textContent = new Date().getFullYear();
+    })();
 
     (function () {
         var panels   = Array.from(document.querySelectorAll('#experience .tl-panel'));
@@ -552,7 +574,7 @@
                 e.stopPropagation();  /* don't trigger panel navigation */
                 var fact = btn.nextElementSibling;
                 var isRevealed = fact.classList.contains('revealed');
-                
+
                 /* Toggle this fun fact */
                 fact.classList.toggle('revealed');
                 btn.classList.toggle('active');

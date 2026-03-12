@@ -400,3 +400,71 @@ section { scroll-margin-top: var(--navbar-h); }
 
     .tl-counter { right: 12px; bottom: 12px; }
 }
+
+/* ============================================================
+   Language switcher dropdown
+   ============================================================ */
+
+/* Toggle button — inherits navbar text color, no background */
+.lang-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: rgba(255,255,255,.75);
+    font-weight: 500;
+    font-size: .9rem;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,.2);
+    border-radius: 6px;
+    padding: 4px 10px !important;
+    line-height: 1.5;
+    transition: color .15s, border-color .15s;
+}
+.lang-toggle:hover,
+.lang-toggle:focus,
+.lang-toggle[aria-expanded="true"] {
+    color: #fff;
+    border-color: rgba(255,255,255,.5);
+    background: transparent;
+    box-shadow: none;
+    outline: none;
+}
+
+/* Chevron icon */
+.lang-chevron {
+    transition: transform .2s;
+    flex-shrink: 0;
+}
+.lang-toggle[aria-expanded="true"] .lang-chevron {
+    transform: rotate(180deg);
+}
+
+/* Dropdown menu */
+.lang-menu {
+    background: #212529;
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 8px;
+    padding: 4px;
+    min-width: 140px;
+    box-shadow: 0 8px 24px rgba(0,0,0,.4);
+}
+.lang-menu .lang-option {
+    color: rgba(255,255,255,.8);
+    border-radius: 5px;
+    padding: 7px 12px;
+    font-size: .88rem;
+    font-weight: 500;
+    width: 100%;
+    text-align: left;
+    background: transparent;
+    border: none;
+    transition: background .15s, color .15s;
+}
+.lang-menu .lang-option:hover {
+    background: rgba(255,255,255,.1);
+    color: #fff;
+}
+.lang-menu .lang-option.active {
+    color: #fff;
+    background: rgba(13,110,253,.35);
+}
