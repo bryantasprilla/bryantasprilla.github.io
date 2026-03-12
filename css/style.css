@@ -64,18 +64,25 @@ section { scroll-margin-top: var(--navbar-h); }
 
 @media (max-width: 768px) {
     .hero-section { background-attachment: scroll; }
-    /* Frame layout: name/subtitle at top, buttons at bottom, face visible in between */
-    .hero-section .row { align-items: stretch !important; }
+    /* Frame layout: name/subtitle at top, buttons at bottom, face visible in between.
+       Override Bootstrap min-vh-100 to account for the fixed navbar height so nothing
+       spills off screen. dvh (dynamic viewport height) also adjusts for the browser's
+       address bar / bottom chrome on mobile devices. */
+    .hero-section .row {
+        align-items: stretch !important;
+        min-height: calc(100vh - var(--navbar-h)) !important;
+        min-height: calc(100dvh - var(--navbar-h)) !important;
+    }
     .hero-section .col-lg-8 {
         display: flex !important;
         flex-direction: column;
-        padding-top: 6vh;
-        padding-bottom: 5vh;
+        padding-top: 5vh;
+        padding-bottom: 3vh;
     }
-    /* Push button group (and social links after it) to the bottom */
+    /* Push buttons down; social links follow naturally */
     .hero-section .col-lg-8 > .d-flex {
         margin-top: auto;
-        margin-bottom: 1rem;
+        margin-bottom: 0.75rem;
     }
 }
 
