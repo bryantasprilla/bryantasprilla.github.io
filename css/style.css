@@ -64,8 +64,9 @@ section { scroll-margin-top: var(--navbar-h); }
 
 @media (max-width: 768px) {
     .hero-section { background-attachment: scroll; }
-    /* Shift text block down so face in upper portion of background is visible */
-    .hero-section .container { padding-top: 20vh; }
+    /* Align content to top so text sits above the face in the background */
+    .hero-section .container { padding-top: 0; }
+    .hero-section .row { align-items: flex-start !important; padding-top: 5vh; }
 }
 
 
